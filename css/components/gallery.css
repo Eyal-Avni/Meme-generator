@@ -1,0 +1,13 @@
+.imgs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    justify-items: center;
+    margin-bottom: 10px;
+}
+.gallery-container img {
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

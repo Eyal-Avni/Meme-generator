@@ -8,6 +8,7 @@
 @import 'basics/helpers.css';
 
 /* COMPONENTS */
+@import 'components/gallery.css';
 
 /* MEDIA QUERIS */
 @import 'setup/mq.css';
