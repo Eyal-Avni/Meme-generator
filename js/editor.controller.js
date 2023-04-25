@@ -22,13 +22,51 @@ function renderMeme() {
     img.onload = () => {
         resizeCanvas()
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        gCtx.fillText(getLine().txt, 250, 250)
+        renderLines()
         gCtx.save()
     }
 }
 
+function renderLines() {
+    const lines = getAllLines()
+    if (!lines) return
+    lines.forEach((line) => {
+        // const txt = line.txt
+        // gCtx.lineWidth = 2
+        // gCtx.textBaseline = 'top'
+        gCtx.textAlign = `${line.align}`
+        // document.fonts.ready.then(() => {
+        gCtx.font = `${line.size}px sans-serif`
+        gCtx.fillStyle = line.color
+        // gCtx.strokeStyle = line.stroke
+        gCtx.fillText(line.txt, line.posX, line.posY)
+        // gCtx.strokeText(txt, line.pos.x, line.pos.y)
+
+        // const selectedLine = getLine()
+        // if (line === selectedLine && !gIsMemeSave) {
+        //     drawBorder()
+        // }
+        // })
+    })
+}
+
 function onChangeLineTxt(txt) {
     setLineTxt(txt)
+    renderMeme()
+}
+
+function onFontUp() {
+    increaseFontSize()
+    renderMeme()
+}
+
+function onFontDown() {
+    decreaseFontSize()
+    renderMeme()
+}
+
+function onChangeTxtColor(ev) {
+    setLineColor(ev.target.value)
     renderMeme()
 }
 

@@ -18,9 +18,11 @@ var gMeme = {
     lines: [
         {
             txt: 'I sometimes eat Falafel',
-            size: 20,
-            align: 'left',
-            color: 'red',
+            size: 40,
+            align: 'center',
+            color: 'white',
+            posX: 250,
+            posY: 250,
         },
     ],
 }
@@ -42,15 +44,40 @@ function getLine() {
     return gMeme.lines[gCurrLineIdx]
 }
 
+function getAllLines() {
+    return gMeme.lines
+}
+
 function setLineTxt(txt) {
     const line = getLine()
     if (!line) return
     line.txt = txt
 }
 
-function _updateLineIdx(idx) {
-    gCurrLineIdx = idx
-    gMeme.selectedLineIdx = gCurrLineIdx
+function increaseFontSize() {
+    const line = getLine()
+    if (!line) return
+    line.size += 3
+}
+
+function decreaseFontSize() {
+    const line = getLine()
+    if (!line || line.size <= 4) return
+    line.size -= 3
+}
+
+function setLineColor(color) {
+    const line = getLine()
+    if (!line) return
+    line.color = color
+}
+
+function addLine() {
+    const lines = getLines()
+    const numNewLine = lines.length + 1
+    const newLine = _createLine(numNewLine)
+    gMeme.lines.push(newLine)
+    _updateLineIdx(gMeme.lines.length - 1)
 }
 
 function getImgs() {
@@ -64,4 +91,26 @@ function findImgByIdx(id) {
 
 function setSelectedImgId(img) {
     gMeme.selectedImgId = img.id
+}
+
+//Private methods
+
+function _updateLineIdx(idx) {
+    gCurrLineIdx = idx
+    gMeme.selectedLineIdx = gCurrLineIdx
+}
+
+function _createLine(numNewLine) {
+    const newPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+    // check if the line is first or second
+    if (numNewLine === 1) newPos.y = 50
+    else if (numNewLine === 2) newPos.y = gElCanvas.height - 80
+
+    return {
+        txt: '',
+        size: 40,
+        align: 'center',
+        color: 'white',
+        stroke: 'black',
+    }
 }

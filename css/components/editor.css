@@ -26,13 +26,52 @@
     display: grid;
     grid-template-columns:
         20px
-        minmax(auto, 1fr)
+        minmax(200px, 1fr)
         20px;
     padding-block: 20px;
+    grid-template-rows: 5em auto;
+    gap: 15px;
+}
+
+.control-box .txt-manipulation {
+    grid-column: 2;
+    align-items: start;
+    background-color: var(--txt-manipulation-color);
+    border-radius: 15px;
+    padding-inline: 15px;
+    padding-block: 10px;
+}
+
+.control-box .txt-manipulation > * {
+    width: 3.4375em;
+    height: 3.4375em;
+    box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55),
+        inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    position: relative;
+}
+
+.txt-manipulation button i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5625em;
+}
+
+.txt-manipulation button img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 60%;
 }
 
 .control-box .input-line {
     grid-column: 2;
     height: 3.125em;
     border-radius: 20px;
+    font-size: 1.5625em;
+    text-align: center;
 }
