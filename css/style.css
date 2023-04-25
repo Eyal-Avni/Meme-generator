@@ -4,12 +4,15 @@
 
 /* BASICS */
 @import 'basics/base.css';
-@import 'basics/layout.css';
 @import 'basics/helpers.css';
 
 /* COMPONENTS */
 @import 'components/gallery.css';
 @import 'components/nav.css';
+@import 'components/editor.css';
 
 /* MEDIA QUERIS */
 @import 'setup/mq.css';
+
+/* LAYOUT */
+@import 'basics/layout.css';

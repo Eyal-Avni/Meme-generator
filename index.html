@@ -8,7 +8,7 @@
         <title>Meme Generator</title>
     </head>
     <body class="main-layout" onload="onInit()">
-        <header class="main-header flex space-between align-center">
+        <header class="main-header flex space-between align-center full">
             <div class="logo">Meme Generator</div>
             <nav class="main-nav">
                 <ul class="clean-list main-menu">
@@ -43,7 +43,7 @@
             <div class="imgs-list"></div>
         </main>
 
-        <main class="editor-container">
+        <main class="editor-container none">
             <div class="canvas-container">
                 <canvas
                     class="meme-canvas"
@@ -52,7 +52,11 @@
                 ></canvas>
             </div>
             <div class="control-box">
-                <input oninput="onChangeLineTxt(this.value)" type="text" />
+                <input
+                    class="input-line"
+                    oninput="onChangeLineTxt(this.value)"
+                    type="text"
+                />
             </div>
         </main>
         <main class="memes-container"></main>

@@ -8,6 +8,10 @@ function onInit() {
     gCtx = gElCanvas.getContext('2d')
     renderMeme()
     renderGallery()
+    addEventListener('resize', () => {
+        resizeCanvas()
+        renderMeme()
+    })
 }
 
 function renderMeme() {
@@ -16,7 +20,7 @@ function renderMeme() {
     img.src = getImgURL(meme)
     if (!img.src) return
     img.onload = () => {
-        // resizeCanvas()
+        resizeCanvas()
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         gCtx.fillText(getLine().txt, 250, 250)
         gCtx.save()
@@ -31,5 +35,4 @@ function onChangeLineTxt(txt) {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetHeight
 }

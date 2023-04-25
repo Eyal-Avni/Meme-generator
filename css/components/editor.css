@@ -1,0 +1,38 @@
+.editor-container {
+    display: grid;
+    grid-template-columns:
+        20px
+        minmax(auto, 1fr)
+        minmax(auto, 1fr)
+        20px;
+    grid-gap: 10px;
+    justify-items: center;
+    justify-content: center;
+}
+
+.editor-container > * {
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--container-color);
+}
+
+.canvas-container {
+    grid-column: 2;
+    overflow: hidden;
+}
+
+.control-box {
+    grid-column: 3;
+    display: grid;
+    grid-template-columns:
+        20px
+        minmax(auto, 1fr)
+        20px;
+    padding-block: 20px;
+}
+
+.control-box .input-line {
+    grid-column: 2;
+    height: 3.125em;
+    border-radius: 20px;
+}
