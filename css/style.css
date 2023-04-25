@@ -9,6 +9,7 @@
 
 /* COMPONENTS */
 @import 'components/gallery.css';
+@import 'components/nav.css';
 
 /* MEDIA QUERIS */
 @import 'setup/mq.css';

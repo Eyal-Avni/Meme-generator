@@ -1,4 +1,22 @@
 /* MAIN LAYOUT */
+
+.main-layout {
+    display: grid;
+    grid-template-columns:
+        minmax(10px, 1fr)
+        minmax(auto, 1250px)
+        minmax(10px, 1fr);
+    gap: 15px;
+}
+
+header {
+    grid-column: 2;
+}
+
+main {
+    grid-column: 2;
+}
+
 .none {
     display: none;
 }

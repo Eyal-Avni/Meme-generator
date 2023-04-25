@@ -7,8 +7,38 @@
         <link rel="stylesheet" href="css/style.css" />
         <title>Meme Generator</title>
     </head>
-    <body onload="onInit()">
-        <header></header>
+    <body class="main-layout" onload="onInit()">
+        <header class="main-header flex space-between align-center">
+            <div class="logo">Meme Generator</div>
+            <nav class="main-nav">
+                <ul class="clean-list main-menu">
+                    <li>
+                        <a
+                            href="#"
+                            class="btn-nav btn-gallery"
+                            onclick="onRoute('gallery')"
+                            >Gallery</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="btn-nav btn-memes"
+                            onclick="onRoute('memes')"
+                            >Memes</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="#"
+                            class="btn-nav btn-about"
+                            onclick="onRoute('about')"
+                            >About</a
+                        >
+                    </li>
+                </ul>
+            </nav>
+        </header>
         <main class="gallery-container">
             <div class="imgs-list"></div>
         </main>
@@ -25,6 +55,8 @@
                 <input oninput="onChangeLineTxt(this.value)" type="text" />
             </div>
         </main>
+        <main class="memes-container"></main>
+        <main class="about-container"></main>
 
         <script src="js/services/util.service.js"></script>
         <script src="js/services/storage.service.js"></script>

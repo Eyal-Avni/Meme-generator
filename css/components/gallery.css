@@ -1,3 +1,9 @@
+.gallery-container {
+    background-color: var(--container-color);
+    padding: 10px;
+    border-radius: 10px;
+}
+
 .imgs-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -5,9 +11,15 @@
     justify-items: center;
     margin-bottom: 10px;
 }
-.gallery-container img {
+.imgs-list img {
     cursor: pointer;
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 10px;
+}
+
+.imgs-list img:hover {
+    outline: 5px solid yellow;
+    outline-offset: -5px;
 }
