@@ -5,7 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/style.css" />
-        <title>Document</title>
+        <title>Meme Generator</title>
     </head>
-    <body></body>
+    <body onload="onInit()">
+        <div class="canvas-container">
+            <canvas class="meme-canvas" height="550px" width="550px"></canvas>
+        </div>
+
+        <script src="js/services/util.service.js"></script>
+        <script src="js/services/storage.service.js"></script>
+        <script src="js/services/main.service.js"></script>
+        <script src="js/services/editor.service.js"></script>
+        <script src="js/main.controller.js"></script>
+        <script src="js/editor.controller.js"></script>
+    </body>
 </html>
