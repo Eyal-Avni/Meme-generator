@@ -12,9 +12,11 @@ function onInit() {
         resizeCanvas()
         renderMeme()
     })
+    handleLineInputState()
 }
 
 function renderMeme() {
+    const currLine = getCurrLine()
     const meme = getMeme()
     const img = new Image()
     img.src = getImgURL(meme)
@@ -23,6 +25,7 @@ function renderMeme() {
         resizeCanvas()
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         renderLines()
+        renderLineFocus(currLine)
         gCtx.save()
     }
 }
@@ -53,6 +56,7 @@ function renderLines() {
 function onChangeLineTxt(txt) {
     setLineTxt(txt)
     renderMeme()
+    handleLineInputState()
 }
 
 function onFontUp() {
@@ -72,16 +76,54 @@ function onChangeTxtColor(ev) {
 
 function onMoveBetweenLines() {
     moveSelectedLine()
+    updateLineInputTxt()
+    renderMeme()
 }
 
 function onNewLine() {
     addLine()
+    handleLineInputState()
+    updateLineInputTxt()
     renderMeme()
 }
 
 function onDeleteLine() {
     deleteLine()
+    handleLineInputState()
     renderMeme()
+}
+
+function updateLineInputTxt() {
+    const currLine = getCurrLine()
+    const elInput = document.querySelector('.input-line')
+    elInput.value = `${currLine.txt}`
+}
+
+function handleLineInputState() {
+    const lines = getAllLines()
+    const elInput = document.querySelector('.input-line')
+    if (!lines.length) {
+        elInput.setAttribute('disabled', '')
+        elInput.placeholder = 'Please create new line'
+        elInput.value = ''
+    } else {
+        elInput.removeAttribute('disabled')
+    }
+}
+
+function renderLineFocus(currLine) {
+    if (!currLine) return
+    gCtx.beginPath()
+    gCtx.lineWidth = '3'
+    gCtx.strokeStyle = 'yellow'
+    gCtx.roundRect(
+        (currLine.posX / 2 - currLine.txt.length * currLine.size * 0.15) * 2,
+        currLine.posY - currLine.size + 5,
+        currLine.txt.length * currLine.size * 0.6,
+        currLine.size + 2,
+        15
+    )
+    gCtx.stroke()
 }
 
 function resizeCanvas() {

@@ -22,6 +22,8 @@ function onImgSelect(imgIdx) {
 function onRoute(route) {
     toggleNavButtons(route)
     hideSections()
+    resetMeme()
+    handleLineInputState()
     openTab(route)
 }
 

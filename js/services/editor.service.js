@@ -17,12 +17,12 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         // {
-        //     txt: 'I sometimes eat Falafel',
+        //     txt: '',
         //     size: 40,
         //     align: 'center',
         //     color: 'white',
-        //     posX: 250,
-        //     posY: 250,
+        //     posX: 200,
+        //     posY: 50,
         // },
         // {
         //     txt: 'sdfsfsd',
@@ -36,7 +36,6 @@ var gMeme = {
 }
 
 var gCurrImgIdx
-// var gCurrLineIdx = 0
 var gFillterBy = null
 
 function getMeme() {
@@ -112,11 +111,18 @@ function moveSelectedLine() {
     else gMeme.selectedLineIdx++
 }
 
+function resetMeme() {
+    gMeme = {
+        selectedImgId: 1,
+        selectedLineIdx: 0,
+        lines: [],
+    }
+}
+
 //Private methods
 
 function _createLine(numNewLine) {
     const newPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
-    // check if the line is first or second
     if (numNewLine === 1) newPos.y = 50
     else if (numNewLine === 2) newPos.y = gElCanvas.height - 50
     return {
