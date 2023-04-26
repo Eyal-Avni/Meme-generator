@@ -1,5 +1,8 @@
 :root {
+    --grad-color1: #33be6d;
+    --grad-color2: #0c98b9;
     --body-color: #22252c;
     --container-color: #383b42;
     --txt-manipulation-color: #19a59f;
+    --search-bar-color: #22252c;
 }

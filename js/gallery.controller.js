@@ -7,8 +7,18 @@ function renderGallery() {
             return `<img src="${img.url}" onclick="onImgSelect(${img.id})">`
         })
         .join('')
+    const elGallery = document.querySelector('.gallery-container > .imgs-list')
+    elGallery.innerHTML = strHtmls
+}
 
-    const elGallery = document.querySelector('.imgs-list')
+function renderMemes() {
+    const imgs = getMemesImgs()
+    var strHtmls = imgs
+        .map((img) => {
+            return `<img src="${img}">`
+        })
+        .join('')
+    const elGallery = document.querySelector('.memes-container > .imgs-list')
     elGallery.innerHTML = strHtmls
 }
 
@@ -27,6 +37,14 @@ function onRoute(route) {
     openTab(route)
 }
 
+function onFlexible() {
+    makeRandomMeme()
+    routeToEditor()
+    handleLineInputState()
+    updateLineInputTxt()
+    renderMeme()
+}
+
 function routeToEditor() {
     document.querySelector('.gallery-container').classList.add('none')
     document.querySelector('.editor-container').classList.remove('none')
@@ -39,6 +57,7 @@ function routeToEditor() {
 function hideSections() {
     document.querySelector('.gallery-container').classList.add('none')
     document.querySelector('.editor-container').classList.add('none')
+    document.querySelector('.memes-container').classList.add('none')
 }
 
 function openTab(route) {

@@ -110,6 +110,7 @@
     border-radius: 15px;
     padding-inline: 15px;
     padding-block: 10px;
+    flex-wrap: wrap;
 }
 
 .control-box .txt-manipulation > *:not(.select-fonts) {
@@ -121,6 +122,7 @@
     border-radius: 10px;
     position: relative;
     margin-inline-end: 25px;
+    margin-block-end: 10px;
 }
 
 .control-box .txt-manipulation > *:hover {
@@ -176,4 +178,44 @@
     border-radius: 20px;
     font-size: 1.5625em;
     text-align: center;
+}
+
+.control-box .meme-actions {
+    grid-column: 2;
+    align-items: center;
+
+    /* justify-items: center; */
+    justify-content: center;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.meme-actions button {
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    height: 50px;
+    margin-inline-end: 25px;
+    margin-block-end: 10px;
+    border-radius: 10px;
+    font-size: 1.5625em;
+}
+
+.meme-actions button:nth-of-type(1) {
+    box-shadow: 1px 6px 0 #165c9c, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    background-color: #1e7cd3;
+}
+
+.meme-actions button:nth-of-type(2) {
+    box-shadow: 1px 6px 0 #632687, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    background-color: #8f44bb;
+}
+
+.meme-actions button:nth-of-type(3) {
+    box-shadow: 1px 5px 0 #015d33, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+}
+
+.meme-actions button:hover {
+    outline: 5px solid yellow;
 }

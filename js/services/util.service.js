@@ -15,3 +15,39 @@ function makeId(length = 4) {
     }
     return id
 }
+
+function makeRandLine() {
+    let randStr = ''
+    const strSize = getRandomIntInclusive(1, 4)
+    const words = [
+        'chair',
+        'book',
+        'shoe',
+        'guitar',
+        'television',
+        'lamp',
+        'keyboard',
+        'camera',
+        'phone',
+        'backpack',
+        'umbrella',
+        'wallet',
+        'glasses',
+        'watch',
+        'headphones',
+    ]
+    for (let i = 0; i < strSize; i++) {
+        const randIdx = getRandomIntInclusive(0, words.length - 1)
+        randStr += words[randIdx] + ' '
+    }
+    return randStr
+}
+
+function getRandomColor() {
+    const letters = '0123456789ABCDEF'
+    let color = '#'
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)]
+    }
+    return color
+}

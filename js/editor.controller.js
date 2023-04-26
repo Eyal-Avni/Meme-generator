@@ -4,15 +4,18 @@ var gElCanvas
 var gCtx
 
 function onInit() {
+    loadMemesFromStorage()
     gElCanvas = document.querySelector('.meme-canvas')
     gCtx = gElCanvas.getContext('2d')
     renderMeme()
     renderGallery()
+    renderMemes()
     addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()
     })
     handleLineInputState()
+    getMemesImgs()
 }
 
 function renderMeme() {
@@ -34,23 +37,12 @@ function renderLines() {
     const lines = getAllLines()
     if (!lines) return
     lines.forEach((line) => {
-        // const txt = line.txt
-        // gCtx.lineWidth = 2
-        // gCtx.textBaseline = 'top'
         gCtx.textAlign = `${line.align}`
-        // document.fonts.ready.then(() => {
-
         gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = line.color
-        // gCtx.strokeStyle = line.stroke
+        gCtx.strokeStyle = line.stroke
         gCtx.fillText(line.txt, line.posX, line.posY)
-        // gCtx.strokeText(txt, line.pos.x, line.pos.y)
-
-        // const selectedLine = getCurrLine()
-        // if (line === selectedLine && !gIsMemeSave) {
-        //     drawBorder()
-        // }
-        // })
+        gCtx.strokeText(line.txt, line.posX, line.posY)
     })
 }
 
@@ -98,6 +90,17 @@ function onSelectFont(font) {
     loadFont(font)
 }
 
+function onSaveMeme() {
+    const canvasUrl = gElCanvas.toDataURL()
+    saveMeme(canvasUrl)
+    renderMemes()
+    alert('Meme saved')
+}
+
+// function hideLineFocus() {
+//     renderLineFocus(null)
+// }
+
 function updateLineInputTxt() {
     const currLine = getCurrLine()
     const elInput = document.querySelector('.input-line')
@@ -109,7 +112,7 @@ function handleLineInputState() {
     const elInput = document.querySelector('.input-line')
     if (!lines.length) {
         elInput.setAttribute('disabled', '')
-        elInput.placeholder = 'Please create new line'
+        elInput.placeholder = 'Please add new line'
         elInput.value = ''
     } else {
         elInput.removeAttribute('disabled')

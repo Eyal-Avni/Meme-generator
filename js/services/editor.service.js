@@ -1,5 +1,7 @@
 'use strict'
 
+const STORAGE_KEY = 'memesDB'
+
 var gMemes = []
 
 var gImgs = [
@@ -124,20 +126,59 @@ function resetMeme() {
         lines: [],
     }
 }
+function makeRandomMeme() {
+    resetMeme()
+    gMeme.selectedImgId = gImgs[getRandomIntInclusive(0, gImgs.length - 1)].id
+    const numOfLines = getRandomIntInclusive(1, 2)
+    gMeme.selectedLineIdx = numOfLines - 1
+    for (let i = 0; i < numOfLines; i++) {
+        const txt = makeRandLine()
+        const size = getRandomIntInclusive(5, 60)
+        const color = getRandomColor()
+        const stroke = getRandomColor()
+        const newLine = _createLine(i, txt, size, color, stroke)
+        gMeme.lines.push(newLine)
+    }
+}
+
+function getMemesImgs() {
+    return gMemes.map((meme) => meme.memeImg)
+}
+
+function saveMeme(canvasUrl) {
+    gMemes.push({ memeObj: gMeme, memeImg: canvasUrl })
+    _saveMemesToStorage()
+}
 
 //Private methods
 
-function _createLine(numNewLine) {
+function _createLine(
+    numNewLine,
+    txt = 'New line',
+    size = 40,
+    color = 'black',
+    stroke = 'white'
+) {
     const newPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     if (numNewLine === 1) newPos.y = 50
     else if (numNewLine === 2) newPos.y = gElCanvas.height - 50
     return {
         font: 'impact',
-        txt: 'New line',
-        size: 40,
+        txt,
+        size,
         align: 'center',
-        color: 'black',
+        color,
         posX: newPos.x,
         posY: newPos.y,
+        stroke,
     }
+}
+
+function _saveMemesToStorage() {
+    saveToStorage(STORAGE_KEY, gMemes)
+}
+
+function loadMemesFromStorage() {
+    gMemes = loadFromStorage(STORAGE_KEY)
+    if (!gMemes) gMemes = []
 }

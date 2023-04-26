@@ -1,0 +1,5 @@
+.memes-container {
+    background-color: var(--container-color);
+    padding: 10px;
+    border-radius: 10px;
+}

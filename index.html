@@ -44,6 +44,17 @@
             </nav>
         </header>
         <main class="gallery-container">
+            <div class="gallery-control-bar flex align-center">
+                <button class="gallery-btn-flexible" onclick="onFlexible()">
+                    i'm flexible
+                </button>
+                <input
+                    class="gallery-search"
+                    type="text"
+                    placeholder="Search"
+                />
+                <div class="gallery-keywords"></div>
+            </div>
             <div class="imgs-list"></div>
         </main>
 
@@ -60,7 +71,7 @@
                     class="input-line"
                     oninput="onChangeLineTxt(this.value)"
                     type="text"
-                    placeholder="Please create new line"
+                    placeholder="Please add new line"
                 />
                 <div class="txt-actions flex align-center">
                     <button onclick="onMoveBetweenLines()">
@@ -92,9 +103,25 @@
                         <option value="sigmar">Sigmar</option>
                     </select>
                 </div>
+                <div class="meme-actions flex align-center">
+                    <button class="share-meme flex">
+                        <i class="fa-solid fa-share-nodes"></i>
+                        &nbspShare
+                    </button>
+                    <button class="download-meme flex">
+                        <i class="fa-solid fa-download"></i>
+                        &nbspDownload
+                    </button>
+                    <button class="save-meme flex" onclick="onSaveMeme()">
+                        <i class="fa-solid fa-floppy-disk"></i>
+                        &nbspSave
+                    </button>
+                </div>
             </div>
         </main>
-        <main class="memes-container"></main>
+        <main class="memes-container none">
+            <div class="imgs-list"></div>
+        </main>
         <main class="about-container"></main>
 
         <script src="js/services/util.service.js"></script>
