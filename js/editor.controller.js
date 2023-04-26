@@ -15,7 +15,7 @@ function onInit() {
         renderMeme()
     })
     handleLineInputState()
-    getMemesImgs()
+    // getMemesImgs()
 }
 
 function renderMeme() {
@@ -91,10 +91,20 @@ function onSelectFont(font) {
 }
 
 function onSaveMeme() {
-    const canvasUrl = gElCanvas.toDataURL()
+    const canvas = handleCanvasAspectRatioForSave()
+    const canvasUrl = canvas.toDataURL()
     saveMeme(canvasUrl)
     renderMemes()
     alert('Meme saved')
+}
+
+function handleCanvasAspectRatioForSave() {
+    let can = document.createElement('canvas')
+    can.width = 215
+    can.height = 215
+    can.ctx = can.getContext('2d')
+    can.ctx.drawImage(gElCanvas, 0, 0, can.width, can.height)
+    return can
 }
 
 // function hideLineFocus() {

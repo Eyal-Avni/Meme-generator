@@ -15,6 +15,7 @@ var gImgs = [
     { id: 8, url: 'imgs/8.jpg', keywords: ['movies'] },
 ]
 var gMeme = {
+    id: makeId(),
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
@@ -42,6 +43,10 @@ var gFillterBy = null
 
 function getMeme() {
     return gMeme
+}
+
+function getMemes() {
+    return gMemes
 }
 
 function getImgURL(meme) {
@@ -131,6 +136,7 @@ function makeRandomMeme() {
     gMeme.selectedImgId = gImgs[getRandomIntInclusive(0, gImgs.length - 1)].id
     const numOfLines = getRandomIntInclusive(1, 2)
     gMeme.selectedLineIdx = numOfLines - 1
+    gMeme.id = makeId()
     for (let i = 0; i < numOfLines; i++) {
         const txt = makeRandLine()
         const size = getRandomIntInclusive(5, 60)
@@ -141,13 +147,18 @@ function makeRandomMeme() {
     }
 }
 
-function getMemesImgs() {
-    return gMemes.map((meme) => meme.memeImg)
-}
+// function getMemesImgs() {
+//     return gMemes.map((meme) => meme.memeImg)
+// }
 
 function saveMeme(canvasUrl) {
     gMemes.push({ memeObj: gMeme, memeImg: canvasUrl })
     _saveMemesToStorage()
+}
+
+function setCurrMemeById(id) {
+    const meme = gMemes.find((meme) => meme.memeObj.id === id)
+    gMeme = meme.memeObj
 }
 
 //Private methods

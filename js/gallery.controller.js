@@ -12,10 +12,11 @@ function renderGallery() {
 }
 
 function renderMemes() {
-    const imgs = getMemesImgs()
-    var strHtmls = imgs
-        .map((img) => {
-            return `<img src="${img}">`
+    const memes = getMemes()
+    // const imgs = getMemesImgs()
+    var strHtmls = memes
+        .map((meme) => {
+            return `<img src="${meme.memeImg}" onclick="onEditMeme('${meme.memeObj.id}')">`
         })
         .join('')
     const elGallery = document.querySelector('.memes-container > .imgs-list')
@@ -45,8 +46,17 @@ function onFlexible() {
     renderMeme()
 }
 
+function onEditMeme(id) {
+    setCurrMemeById(id)
+    handleLineInputState()
+    updateLineInputTxt()
+    renderMeme()
+    routeToEditor()
+}
+
 function routeToEditor() {
     document.querySelector('.gallery-container').classList.add('none')
+    document.querySelector('.memes-container').classList.add('none')
     document.querySelector('.editor-container').classList.remove('none')
     document
         .querySelector('.main-menu .btn-gallery')
