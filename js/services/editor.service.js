@@ -152,7 +152,15 @@ function makeRandomMeme() {
 // }
 
 function saveMeme(canvasUrl) {
-    gMemes.push({ memeObj: gMeme, memeImg: canvasUrl })
+    const memeId = gMemes.findIndex((meme) => {
+        return meme.memeObj.id === gMeme.id
+    })
+    console.log(memeId)
+    if (memeId === -1) {
+        gMemes.push({ memeObj: gMeme, memeImg: canvasUrl })
+    } else {
+        gMemes.splice(memeId, 1, { memeObj: gMeme, memeImg: canvasUrl })
+    }
     _saveMemesToStorage()
 }
 

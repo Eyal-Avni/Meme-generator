@@ -61,6 +61,9 @@ function routeToEditor() {
     document
         .querySelector('.main-menu .btn-gallery')
         .parentElement.classList.remove('active')
+    document
+        .querySelector('.main-menu .btn-memes')
+        .parentElement.classList.remove('active')
     toggleNavButtons(null)
 }
 
