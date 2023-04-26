@@ -5,7 +5,7 @@
         minmax(auto, 1fr)
         minmax(auto, 1fr)
         20px;
-    grid-gap: 10px;
+    grid-gap: 30px;
     justify-items: center;
     justify-content: center;
 }
@@ -29,8 +29,69 @@
         minmax(200px, 1fr)
         20px;
     padding-block: 20px;
-    grid-template-rows: 5em auto;
+    grid-template-rows: 5em 3.4375em;
     gap: 15px;
+}
+.control-box .txt-actions {
+    grid-column: 2;
+    justify-content: center;
+    align-content: center;
+}
+
+.control-box .txt-actions > * {
+    width: 3.4375em;
+    height: 3.4375em;
+    border-radius: 10px;
+    position: relative;
+    margin-inline-end: 15px;
+}
+
+.control-box .txt-actions button {
+    border: 0;
+    background-color: #ebeef3;
+    position: relative;
+}
+
+.control-box .txt-actions button:nth-of-type(1) {
+    box-shadow: 1px 5px 0 #048b97, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    background-image: linear-gradient(
+        -38deg,
+        #66c4dc 0%,
+        #40b1ce 50%,
+        #0c98bb 100%
+    );
+}
+
+.control-box .txt-actions button:nth-of-type(2) {
+    box-shadow: 1px 5px 0 #015d33, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+}
+
+.control-box .txt-actions button:nth-of-type(3) {
+    box-shadow: 1px 5px 0 #8c0606, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    background-image: linear-gradient(
+        -38deg,
+        #cf1d37 0%,
+        #cf1d37 1%,
+        #f05036 100%
+    );
+}
+
+.txt-actions i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5625em;
+}
+
+.txt-actions img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
 }
 
 .control-box .txt-manipulation {
@@ -43,12 +104,14 @@
 }
 
 .control-box .txt-manipulation > * {
+    border: 0;
     width: 3.4375em;
     height: 3.4375em;
     box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55),
         inset 0 5px 0 rgba(255, 255, 255, 0.58);
     border-radius: 10px;
     position: relative;
+    margin-inline-end: 25px;
 }
 
 .txt-manipulation button i {

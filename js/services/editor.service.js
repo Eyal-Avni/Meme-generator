@@ -16,19 +16,27 @@ var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
     lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 40,
-            align: 'center',
-            color: 'white',
-            posX: 250,
-            posY: 250,
-        },
+        // {
+        //     txt: 'I sometimes eat Falafel',
+        //     size: 40,
+        //     align: 'center',
+        //     color: 'white',
+        //     posX: 250,
+        //     posY: 250,
+        // },
+        // {
+        //     txt: 'sdfsfsd',
+        //     size: 40,
+        //     align: 'center',
+        //     color: 'green',
+        //     posX: 250,
+        //     posY: 250,
+        // },
     ],
 }
 
 var gCurrImgIdx
-var gCurrLineIdx = 0
+// var gCurrLineIdx = 0
 var gFillterBy = null
 
 function getMeme() {
@@ -40,8 +48,8 @@ function getImgURL(meme) {
     return img.url
 }
 
-function getLine() {
-    return gMeme.lines[gCurrLineIdx]
+function getCurrLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
 }
 
 function getAllLines() {
@@ -49,35 +57,40 @@ function getAllLines() {
 }
 
 function setLineTxt(txt) {
-    const line = getLine()
+    const line = getCurrLine()
     if (!line) return
     line.txt = txt
 }
 
 function increaseFontSize() {
-    const line = getLine()
+    const line = getCurrLine()
     if (!line) return
     line.size += 3
 }
 
 function decreaseFontSize() {
-    const line = getLine()
+    const line = getCurrLine()
     if (!line || line.size <= 4) return
     line.size -= 3
 }
 
 function setLineColor(color) {
-    const line = getLine()
+    const line = getCurrLine()
     if (!line) return
     line.color = color
 }
 
 function addLine() {
-    const lines = getLines()
-    const numNewLine = lines.length + 1
+    const numNewLine = gMeme.lines.length + 1
     const newLine = _createLine(numNewLine)
     gMeme.lines.push(newLine)
-    _updateLineIdx(gMeme.lines.length - 1)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
+
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    if (!gMeme.selectedLineIdx) return
+    else gMeme.selectedLineIdx--
 }
 
 function getImgs() {
@@ -93,24 +106,25 @@ function setSelectedImgId(img) {
     gMeme.selectedImgId = img.id
 }
 
-//Private methods
-
-function _updateLineIdx(idx) {
-    gCurrLineIdx = idx
-    gMeme.selectedLineIdx = gCurrLineIdx
+function moveSelectedLine() {
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1)
+        gMeme.selectedLineIdx = 0
+    else gMeme.selectedLineIdx++
 }
+
+//Private methods
 
 function _createLine(numNewLine) {
     const newPos = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
     // check if the line is first or second
     if (numNewLine === 1) newPos.y = 50
-    else if (numNewLine === 2) newPos.y = gElCanvas.height - 80
-
+    else if (numNewLine === 2) newPos.y = gElCanvas.height - 50
     return {
-        txt: '',
+        txt: 'New line',
         size: 40,
         align: 'center',
-        color: 'white',
-        stroke: 'black',
+        color: 'black',
+        posX: newPos.x,
+        posY: newPos.y,
     }
 }

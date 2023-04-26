@@ -42,7 +42,7 @@ function renderLines() {
         gCtx.fillText(line.txt, line.posX, line.posY)
         // gCtx.strokeText(txt, line.pos.x, line.pos.y)
 
-        // const selectedLine = getLine()
+        // const selectedLine = getCurrLine()
         // if (line === selectedLine && !gIsMemeSave) {
         //     drawBorder()
         // }
@@ -67,6 +67,20 @@ function onFontDown() {
 
 function onChangeTxtColor(ev) {
     setLineColor(ev.target.value)
+    renderMeme()
+}
+
+function onMoveBetweenLines() {
+    moveSelectedLine()
+}
+
+function onNewLine() {
+    addLine()
+    renderMeme()
+}
+
+function onDeleteLine() {
+    deleteLine()
     renderMeme()
 }
 
