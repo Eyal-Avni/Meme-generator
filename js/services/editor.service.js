@@ -79,6 +79,12 @@ function setLineColor(color) {
     line.color = color
 }
 
+function setLineFont(font) {
+    const line = getCurrLine()
+    if (!line) return
+    line.font = font
+}
+
 function addLine() {
     const numNewLine = gMeme.lines.length + 1
     const newLine = _createLine(numNewLine)
@@ -126,6 +132,7 @@ function _createLine(numNewLine) {
     if (numNewLine === 1) newPos.y = 50
     else if (numNewLine === 2) newPos.y = gElCanvas.height - 50
     return {
+        font: 'impact',
         txt: 'New line',
         size: 40,
         align: 'center',

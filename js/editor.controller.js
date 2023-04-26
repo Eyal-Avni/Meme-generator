@@ -39,7 +39,8 @@ function renderLines() {
         // gCtx.textBaseline = 'top'
         gCtx.textAlign = `${line.align}`
         // document.fonts.ready.then(() => {
-        gCtx.font = `${line.size}px sans-serif`
+
+        gCtx.font = `${line.size}px ${line.font}`
         gCtx.fillStyle = line.color
         // gCtx.strokeStyle = line.stroke
         gCtx.fillText(line.txt, line.posX, line.posY)
@@ -93,6 +94,10 @@ function onDeleteLine() {
     renderMeme()
 }
 
+function onSelectFont(font) {
+    loadFont(font)
+}
+
 function updateLineInputTxt() {
     const currLine = getCurrLine()
     const elInput = document.querySelector('.input-line')
@@ -129,4 +134,17 @@ function renderLineFocus(currLine) {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
+}
+
+function loadFont(font) {
+    if (font === 'impact') {
+        setLineFont(font)
+        renderMeme()
+    } else {
+        const currFont = new FontFace(`${font}`, `url(fonts/${font}.ttf`)
+        currFont.load().then((font) => {
+            setLineFont(font.family)
+            renderMeme()
+        })
+    }
 }

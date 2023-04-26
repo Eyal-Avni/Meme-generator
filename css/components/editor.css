@@ -112,7 +112,7 @@
     padding-block: 10px;
 }
 
-.control-box .txt-manipulation > * {
+.control-box .txt-manipulation > *:not(.select-fonts) {
     border: 0;
     width: 3.4375em;
     height: 3.4375em;
@@ -142,6 +142,32 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 60%;
+}
+
+.select-fonts {
+    flex-basis: auto;
+    border: 0;
+    height: 3.4375em;
+    box-shadow: 1px 5px 0 rgba(92, 92, 92, 0.55),
+        inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    border-radius: 10px;
+    margin-inline-end: 25px;
+}
+
+.select-fonts option:nth-of-type(1) {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.select-fonts option:nth-of-type(2) {
+    font-family: poppins;
+}
+
+.select-fonts option:nth-of-type(3) {
+    font-family: righteous;
+}
+
+.select-fonts option:nth-of-type(4) {
+    font-family: sigmar;
 }
 
 .control-box .input-line {

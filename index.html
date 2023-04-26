@@ -81,6 +81,16 @@
                         <img src="icons/font-down.png" alt="" />
                     </button>
                     <input type="color" oninput="onChangeTxtColor(event)" />
+                    <select
+                        name="fonts"
+                        class="select-fonts"
+                        onchange="onSelectFont(this.value)"
+                    >
+                        <option value="impact">Impact</option>
+                        <option value="poppins">Poppins</option>
+                        <option value="righteous">Righteous</option>
+                        <option value="sigmar">Sigmar</option>
+                    </select>
                 </div>
             </div>
         </main>
