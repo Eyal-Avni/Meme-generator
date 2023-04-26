@@ -68,6 +68,27 @@ function setLineTxt(txt) {
     line.txt = txt
 }
 
+function setLinePos(dir) {
+    const line = getCurrLine()
+    if (!line) return
+    switch (dir) {
+        case 'up':
+            if (line.posY > 10) line.posY -= 10
+            break
+        case 'down':
+            if (line.posY < gElCanvas.height - 10) line.posY += 10
+            break
+        case 'left':
+            if (line.posX > 10) line.posX -= 10
+            break
+        case 'right':
+            if (line.posX < gElCanvas.width - 10) line.posX += 10
+            break
+        default:
+            break
+    }
+}
+
 function increaseFontSize() {
     const line = getCurrLine()
     if (!line) return
@@ -165,10 +186,6 @@ function makeRandomMeme() {
         gMeme.lines.push(newLine)
     }
 }
-
-// function getMemesImgs() {
-//     return gMemes.map((meme) => meme.memeImg)
-// }
 
 function saveMeme(canvasUrl) {
     const memeId = gMemes.findIndex((meme) => {

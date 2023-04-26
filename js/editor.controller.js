@@ -15,7 +15,6 @@ function onInit() {
         renderMeme()
     })
     handleLineInputState()
-    // getMemesImgs()
 }
 
 function renderMeme() {
@@ -94,6 +93,11 @@ function onAlign(dir) {
     renderMeme()
 }
 
+function onMoveLine(dir) {
+    setLinePos(dir)
+    renderMeme()
+}
+
 function onSaveMeme() {
     const canvas = handleCanvasAspectRatioForSave()
     const canvasUrl = canvas.toDataURL()
@@ -103,6 +107,7 @@ function onSaveMeme() {
 }
 
 function onDownloadMeme() {
+    // renderMemeNoFocus()
     const canvasUrl = gElCanvas.toDataURL()
     const elA = document.createElement('a')
     elA.setAttribute('href', canvasUrl)
@@ -113,7 +118,7 @@ function onDownloadMeme() {
 }
 
 function handleCanvasAspectRatioForSave() {
-    let can = document.createelA('canvas')
+    let can = document.createElement('canvas')
     can.width = 215
     can.height = 215
     can.ctx = can.getContext('2d')
@@ -121,8 +126,17 @@ function handleCanvasAspectRatioForSave() {
     return can
 }
 
-// function hideLineFocus() {
-//     renderLineFocus(null)
+// function renderMemeNoFocus() {
+//     const meme = getMeme()
+//     const img = new Image()
+//     img.src = getImgURL(meme)
+//     if (!img.src) return
+//     img.onload = () => {
+//         resizeCanvas()
+//         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+//         renderLines()
+//         gCtx.save()
+//     }
 // }
 
 function updateLineInputTxt() {
@@ -159,6 +173,15 @@ function renderLineFocus() {
     )
     gCtx.stroke()
 }
+
+// function hideLineFocus() {
+//     gCtx.beginPath()
+//     gCtx.lineWidth = '0'
+//     gCtx.strokeStyle = 'yellow'
+//     gCtx.roundRect(Infinity, Infinity, 0, 0, 0)
+//     gCtx.stroke()
+//     renderMemeNoFocus()
+// }
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')

@@ -13,7 +13,6 @@ function renderGallery() {
 
 function renderMemes() {
     const memes = getMemes()
-    // const imgs = getMemesImgs()
     var strHtmls = memes
         .map((meme) => {
             return `<img src="${meme.memeImg}" onclick="onEditMeme('${meme.memeObj.id}')">`
