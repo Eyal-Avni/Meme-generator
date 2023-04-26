@@ -92,6 +92,25 @@ function setLineFont(font) {
     line.font = font
 }
 
+function setLineAlign(dir) {
+    const line = getCurrLine()
+    if (!line) return
+    line.align = dir
+    switch (dir) {
+        case 'left':
+            line.posX = 0
+            break
+        case 'right':
+            line.posX = gElCanvas.width
+            break
+        case 'center':
+            line.posX = gElCanvas.width / 2
+            break
+        default:
+            break
+    }
+}
+
 function addLine() {
     const numNewLine = gMeme.lines.length + 1
     const newLine = _createLine(numNewLine)
@@ -155,7 +174,6 @@ function saveMeme(canvasUrl) {
     const memeId = gMemes.findIndex((meme) => {
         return meme.memeObj.id === gMeme.id
     })
-    console.log(memeId)
     if (memeId === -1) {
         gMemes.push({ memeObj: gMeme, memeImg: canvasUrl })
     } else {

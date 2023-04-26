@@ -19,7 +19,6 @@ function onInit() {
 }
 
 function renderMeme() {
-    const currLine = getCurrLine()
     const meme = getMeme()
     const img = new Image()
     img.src = getImgURL(meme)
@@ -28,7 +27,7 @@ function renderMeme() {
         resizeCanvas()
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         renderLines()
-        renderLineFocus(currLine)
+        renderLineFocus()
         gCtx.save()
     }
 }
@@ -90,6 +89,11 @@ function onSelectFont(font) {
     loadFont(font)
 }
 
+function onAlign(dir) {
+    setLineAlign(dir)
+    renderMeme()
+}
+
 function onSaveMeme() {
     const canvas = handleCanvasAspectRatioForSave()
     const canvasUrl = canvas.toDataURL()
@@ -98,8 +102,18 @@ function onSaveMeme() {
     alert('Meme saved')
 }
 
+function onDownloadMeme() {
+    const canvasUrl = gElCanvas.toDataURL()
+    const elA = document.createElement('a')
+    elA.setAttribute('href', canvasUrl)
+    elA.setAttribute('download', 'meme.png')
+    document.body.appendChild(elA)
+    elA.click()
+    document.body.removeChild(elA)
+}
+
 function handleCanvasAspectRatioForSave() {
-    let can = document.createElement('canvas')
+    let can = document.createelA('canvas')
     can.width = 215
     can.height = 215
     can.ctx = can.getContext('2d')
@@ -113,6 +127,7 @@ function handleCanvasAspectRatioForSave() {
 
 function updateLineInputTxt() {
     const currLine = getCurrLine()
+    if (!currLine) return
     const elInput = document.querySelector('.input-line')
     elInput.value = `${currLine.txt}`
 }
@@ -129,7 +144,8 @@ function handleLineInputState() {
     }
 }
 
-function renderLineFocus(currLine) {
+function renderLineFocus() {
+    const currLine = getCurrLine()
     if (!currLine) return
     gCtx.beginPath()
     gCtx.lineWidth = '3'

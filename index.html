@@ -91,6 +91,18 @@
                     <button class="font-size-down" onclick="onFontDown()">
                         <img src="icons/font-down.png" alt="" />
                     </button>
+                    <button class="txt-align-left" onclick="onAlign('left')">
+                        <i class="fa-solid fa-align-left"></i>
+                    </button>
+                    <button
+                        class="txt-align-center"
+                        onclick="onAlign('center')"
+                    >
+                        <i class="fa-solid fa-align-center"></i>
+                    </button>
+                    <button class="txt-align-right" onclick="onAlign('right')">
+                        <i class="fa-solid fa-align-right"></i>
+                    </button>
                     <input type="color" oninput="onChangeTxtColor(event)" />
                     <select
                         name="fonts"
@@ -108,7 +120,10 @@
                         <i class="fa-solid fa-share-nodes"></i>
                         &nbspShare
                     </button>
-                    <button class="download-meme flex">
+                    <button
+                        class="download-meme flex"
+                        onclick="onDownloadMeme()"
+                    >
                         <i class="fa-solid fa-download"></i>
                         &nbspDownload
                     </button>
