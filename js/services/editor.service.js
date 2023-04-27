@@ -234,6 +234,50 @@ function setFilterKeyword(keyword) {
     gFillterKeyword = keyword
 }
 
+function isLineClicked(clickedPos) {
+    const lines = getAllLines()
+    const clickedLineIdx = lines.findIndex((line) => {
+        const lineWidth = gCtx.measureText(line.txt).width
+        return (
+            clickedPos.x >= line.posX - lineWidth / 2 - 20 &&
+            clickedPos.x <= line.posX + lineWidth / 2 + 20 &&
+            clickedPos.y >= line.posY - line.size - 10 &&
+            clickedPos.y <= line.posY + line.size
+        )
+    })
+    if (clickedLineIdx !== -1) {
+        gMeme.selectedLineIdx = clickedLineIdx
+        return true
+    }
+    return false
+}
+
+function moveXAxis(distance) {
+    const line = getCurrLine()
+    if (line.posX > gElCanvas.width - 10) {
+        line.posX = gElCanvas.width - 10
+        return
+    }
+    if (line.posX < 10) {
+        line.posX = 10
+        return
+    }
+    line.posX += distance
+}
+
+function moveYAxis(distance) {
+    const line = getCurrLine()
+    if (line.posY > gElCanvas.height - 10) {
+        line.posY = gElCanvas.height - 10
+        return
+    }
+    if (line.posY < 10) {
+        line.posY = 10
+        return
+    }
+    line.posY += distance
+}
+
 //Private methods
 
 function _createLine(

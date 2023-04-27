@@ -57,6 +57,7 @@ function onFlexible() {
 }
 
 function onEditMeme(id) {
+    loadMemesFromStorage()
     setCurrMemeById(id)
     handleLineInputState()
     updateLineInputTxt()

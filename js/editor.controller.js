@@ -2,11 +2,14 @@
 
 var gElCanvas
 var gCtx
+var gCurrPos
+var gDrag
 
 function onInit() {
     loadMemesFromStorage()
     gElCanvas = document.querySelector('.meme-canvas')
     gCtx = gElCanvas.getContext('2d')
+    addListeners()
     renderMeme()
     renderGallery()
     renderMemes()
@@ -43,6 +46,15 @@ function renderLines() {
         gCtx.fillText(line.txt, line.posX, line.posY)
         gCtx.strokeText(line.txt, line.posX, line.posY)
     })
+}
+
+function addListeners() {
+    gElCanvas.addEventListener('mousemove', onDrag)
+    gElCanvas.addEventListener('mousedown', onPress)
+    gElCanvas.addEventListener('mouseup', onRelease)
+    gElCanvas.addEventListener('touchmove', onDrag)
+    gElCanvas.addEventListener('touchstart', onPress)
+    gElCanvas.addEventListener('touchend', onRelease)
 }
 
 function onChangeLineTxt(txt) {
@@ -116,6 +128,36 @@ function onDownloadMeme() {
     document.body.appendChild(elA)
     elA.click()
     document.body.removeChild(elA)
+}
+
+function onPress(ev) {
+    gDrag = true
+    const pos = getEvPos(ev)
+    const isLineClick = isLineClicked(pos)
+    console.log(isLineClick)
+    if (!isLineClick) return
+    updateLineInputTxt()
+    renderMeme()
+    gCurrPos = pos
+    gElCanvas.style.cursor = 'grab'
+}
+
+function onRelease() {
+    gDrag = false
+    gElCanvas.style.cursor = 'grab'
+}
+
+function onDrag(ev) {
+    const currLine = getCurrLine()
+    if (!currLine || !gDrag) return
+    const pos = getEvPos(ev)
+    if (currLine && gDrag) {
+        moveXAxis(pos.x - gCurrPos.x)
+        moveYAxis(pos.y - gCurrPos.y)
+    }
+    gElCanvas.style.cursor = 'grabbing'
+    gCurrPos = pos
+    renderMeme()
 }
 
 function handleCanvasAspectRatioForSave() {

@@ -51,3 +51,20 @@ function getRandomColor() {
     }
     return color
 }
+
+function getEvPos(ev) {
+    const touchEvs = ['touchstart', 'touchmove', 'touchend']
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+    if (touchEvs.includes(ev.type)) {
+        ev.preventDefault()
+        ev = ev.changedTouches[0]
+        pos = {
+            x: ev.pageX - ev.target.offsetLeft,
+            y: ev.pageY - ev.target.offsetTop,
+        }
+    }
+    return pos
+}

@@ -31,6 +31,10 @@
     justify-content: space-between;
 }
 
+.gallery-control-bar form {
+    height: 100%;
+}
+
 .gallery-control-bar .gallery-search {
     background-color: var(--search-bar-color);
     height: 100%;
