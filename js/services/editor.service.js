@@ -155,6 +155,7 @@ function getImgs() {
 }
 
 function prepUploadedImg(src) {
+    setMemeId()
     const id = makeId()
     gImgs.push({ id: id, url: src, keywords: [] })
     gMeme.selectedImgId = id
