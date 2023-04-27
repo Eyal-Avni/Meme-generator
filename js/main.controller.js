@@ -137,12 +137,14 @@ function openTab(route) {
         .querySelector(`.${gCurrRoute}-container`)
         .classList.remove('show-right')
     document.querySelector(`.${route}-container`).classList.add('show-right')
-
     document.querySelector(`.${route}-container`).classList.remove('hide-right')
-    setTimeout(() => {
-        hideSections()
+    setTimeout(async () => {
+        document
+            .querySelector(`.${gCurrRoute}-container`)
+            .classList.remove('hide-right')
         document.querySelector(`.${route}-container`).classList.remove('none')
         renderMeme()
+        await clearAnimation(route)
     }, 700)
     if (route === 'editor') {
         document
@@ -152,6 +154,16 @@ function openTab(route) {
             .querySelector('.main-menu .btn-memes')
             .parentElement.classList.remove('active')
     }
+}
+
+function clearAnimation(route) {
+    return new Promise(() => {
+        setTimeout(() => {
+            document
+                .querySelector(`.${route}-container`)
+                .classList.remove('show-right')
+        }, 700)
+    })
 }
 
 function toggleNavButtons(route) {

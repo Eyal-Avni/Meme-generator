@@ -59,11 +59,10 @@
 
 .hide-right {
     animation: slideOutRight 700ms ease forwards;
-    z-index: 1;
+    /* z-index: 1; */
 }
 
 .show-right {
     animation: slideInRight 700ms ease forwards;
-    z-index: 0;
-    /* animation-delay: 700ms; */
+    /* z-index: 0; */
 }

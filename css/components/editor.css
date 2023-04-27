@@ -29,7 +29,6 @@
         minmax(200px, 1fr)
         20px;
     padding-block: 20px;
-    /* grid-template-rows: 1fr 1fr 1fr 1fr; */
     gap: 10px;
 }
 
