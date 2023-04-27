@@ -2,24 +2,27 @@
 
 var gCurrRoute
 
-function onInit() {
+async function onInit() {
     loadMemesFromStorage()
+    loadImgsFromStorage()
     gElCanvas = document.querySelector('.meme-canvas')
     gCtx = gElCanvas.getContext('2d')
     gCurrRoute = 'gallery'
     addListeners()
-    renderMeme()
     renderGallery()
     renderMemes()
     renderKeywordList()
     addEventListener('resize', () => {
         resizeCanvas()
-        renderMeme()
+        if (gCurrRoute === 'editor') {
+            renderMeme()
+        }
     })
     handleLineInputState()
 }
 
 function renderGallery() {
+    loadImgsFromStorage()
     const imgs = getImgs()
     var strHtmls = `<div class="add-new-img">
                         <label for="upload-image">
@@ -36,7 +39,7 @@ function renderGallery() {
                     </div>`
     strHtmls += imgs
         .map((img) => {
-            return `<img src="${img.url}" onclick="onImgSelect(${img.id})">`
+            return `<img src="${img.url}" onclick="onImgSelect('${img.id}')">`
         })
         .join('')
     const elGallery = document.querySelector('.gallery-container > .imgs-list')
@@ -67,6 +70,7 @@ function renderKeywordList() {
 
 function onImgSelect(imgIdx) {
     const img = findImgByIdx(imgIdx)
+    setLineTxt(imgIdx)
     setSelectedImgId(img)
     setMemeId()
     openTab('editor')
@@ -117,8 +121,7 @@ function onUploadImg(ev) {
         var img = new Image()
         img.src = event.target.result
         prepUploadedImg(img.src)
-        openTab('editor')
-        renderMemes()
+        renderGallery()
     }
     reader.readAsDataURL(ev.target.files[0])
 }
@@ -130,6 +133,7 @@ function hideSections() {
 }
 
 function openTab(route) {
+    if (route === gCurrRoute) return
     document
         .querySelector(`.${gCurrRoute}-container`)
         .classList.add('hide-right')
@@ -144,17 +148,17 @@ function openTab(route) {
             .classList.remove('hide-right')
         hideSections()
         document.querySelector(`.${route}-container`).classList.remove('none')
-        renderMeme()
+        if (route === 'editor') {
+            renderMeme()
+            document
+                .querySelector('.main-menu .btn-gallery')
+                .parentElement.classList.remove('active')
+            document
+                .querySelector('.main-menu .btn-memes')
+                .parentElement.classList.remove('active')
+        }
         await clearAnimation(route)
     }, 700)
-    if (route === 'editor') {
-        document
-            .querySelector('.main-menu .btn-gallery')
-            .parentElement.classList.remove('active')
-        document
-            .querySelector('.main-menu .btn-memes')
-            .parentElement.classList.remove('active')
-    }
 }
 
 function clearAnimation(route) {
