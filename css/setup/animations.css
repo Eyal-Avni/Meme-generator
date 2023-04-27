@@ -1,0 +1,30 @@
+@keyframes slideOutRight {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hide-right {
+    animation: slideOutRight 700ms ease forwards;
+    z-index: 1;
+}
+
+.show-right {
+    animation: slideInRight 700ms ease forwards;
+    z-index: 0;
+    /* animation-delay: 700ms; */
+}

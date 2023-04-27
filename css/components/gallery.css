@@ -12,6 +12,30 @@
     margin-block-end: 10px;
 }
 
+.imgs-list .add-new-img {
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    /* opacity: 0.2; */
+    background-color: rgba(255, 255, 255, 0.275);
+    text-align: center;
+    position: relative;
+}
+
+.imgs-list .add-new-img:hover {
+    outline: 5px solid yellow;
+    outline-offset: -5px;
+}
+
+.add-new-img label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    font-size: 8em;
+}
+
 .imgs-list img {
     cursor: pointer;
     height: 100%;

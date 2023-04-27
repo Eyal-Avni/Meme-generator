@@ -154,6 +154,12 @@ function getImgs() {
     return gImgs.filter((img) => img.keywords.includes(gFillterKeyword))
 }
 
+function prepUploadedImg(src) {
+    const id = makeId()
+    gImgs.push({ id: id, url: src, keywords: [] })
+    gMeme.selectedImgId = id
+}
+
 function getKeywordsList() {
     const uniqueKeywords = []
     gImgs.forEach((img) => {

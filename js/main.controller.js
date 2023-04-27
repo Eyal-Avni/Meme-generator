@@ -1,9 +1,12 @@
 'use strict'
 
+var gCurrRoute
+
 function onInit() {
     loadMemesFromStorage()
     gElCanvas = document.querySelector('.meme-canvas')
     gCtx = gElCanvas.getContext('2d')
+    gCurrRoute = 'gallery'
     addListeners()
     renderMeme()
     renderGallery()
@@ -18,7 +21,20 @@ function onInit() {
 
 function renderGallery() {
     const imgs = getImgs()
-    var strHtmls = imgs
+    var strHtmls = `<div class="add-new-img">
+                        <label for="upload-image">
+                            <i class="fa-solid fa-upload"></i>
+                        </label>
+                        <input
+                            onchange="onUploadImg(event)"
+                                class="none"
+                                type="file"
+                                id="upload-image"
+                                name="upload-image"
+                                accept="image/*"
+                            />
+                    </div>`
+    strHtmls += imgs
         .map((img) => {
             return `<img src="${img.url}" onclick="onImgSelect(${img.id})">`
         })
@@ -53,24 +69,28 @@ function onImgSelect(imgIdx) {
     const img = findImgByIdx(imgIdx)
     setSelectedImgId(img)
     setMemeId()
-    routeToEditor()
-    renderMeme()
+    // routeToEditor()
+
+    openTab('editor')
+    gCurrRoute = 'editor'
 }
 
 function onRoute(route) {
     toggleNavButtons(route)
-    hideSections()
     resetMeme()
     handleLineInputState()
     openTab(route)
+    gCurrRoute = route
 }
 
 function onFlexible() {
     makeRandomMeme()
-    routeToEditor()
+    openTab('editor')
+    // routeToEditor()
     handleLineInputState()
     updateLineInputTxt()
-    renderMeme()
+    // renderMeme()
+    gCurrRoute = 'editor'
 }
 
 function onEditMeme(id) {
@@ -78,8 +98,10 @@ function onEditMeme(id) {
     setCurrMemeById(id)
     handleLineInputState()
     updateLineInputTxt()
-    renderMeme()
-    routeToEditor()
+    // renderMeme()
+    openTab('editor')
+    // routeToEditor()
+    gCurrRoute = 'editor'
 }
 
 function onChangeFilterGallery(keyword) {
@@ -95,18 +117,33 @@ function onSubmitFilterGallery(ev) {
     elInput.value = ''
 }
 
-function routeToEditor() {
-    document.querySelector('.gallery-container').classList.add('none')
-    document.querySelector('.memes-container').classList.add('none')
-    document.querySelector('.editor-container').classList.remove('none')
-    document
-        .querySelector('.main-menu .btn-gallery')
-        .parentElement.classList.remove('active')
-    document
-        .querySelector('.main-menu .btn-memes')
-        .parentElement.classList.remove('active')
-    toggleNavButtons(null)
+function onUploadImg(ev) {
+    var reader = new FileReader()
+    reader.onload = (event) => {
+        var img = new Image()
+        img.src = event.target.result
+        prepUploadedImg(img.src)
+        openTab('editor')
+        // routeToEditor()
+        renderMemes()
+    }
+    reader.readAsDataURL(ev.target.files[0])
 }
+
+// function routeToEditor() {
+//     document.querySelector('.gallery-container').classList.add('hide-right')
+//     document.querySelector('.editor-container').classList.add('show-right')
+//     document.querySelector('.gallery-container').classList.add('none')
+//     document.querySelector('.memes-container').classList.add('none')
+//     document.querySelector('.editor-container').classList.remove('none')
+//     document
+//         .querySelector('.main-menu .btn-gallery')
+//         .parentElement.classList.remove('active')
+//     document
+//         .querySelector('.main-menu .btn-memes')
+//         .parentElement.classList.remove('active')
+//     toggleNavButtons(null)
+// }
 
 function hideSections() {
     document.querySelector('.gallery-container').classList.add('none')
@@ -115,11 +152,32 @@ function hideSections() {
 }
 
 function openTab(route) {
-    document.querySelector(`.${route}-container`).classList.remove('none')
+    document
+        .querySelector(`.${gCurrRoute}-container`)
+        .classList.add('hide-right')
+    document
+        .querySelector(`.${gCurrRoute}-container`)
+        .classList.remove('show-right')
+    document.querySelector(`.${route}-container`).classList.add('show-right')
+
+    document.querySelector(`.${route}-container`).classList.remove('hide-right')
+    setTimeout(() => {
+        hideSections()
+        document.querySelector(`.${route}-container`).classList.remove('none')
+        renderMeme()
+    }, 700)
+    if (route === 'editor') {
+        document
+            .querySelector('.main-menu .btn-gallery')
+            .parentElement.classList.remove('active')
+        document
+            .querySelector('.main-menu .btn-memes')
+            .parentElement.classList.remove('active')
+    }
 }
 
 function toggleNavButtons(route) {
-    if (!route) return
+    // if (!route) return
     document
         .querySelector('.main-menu .btn-gallery')
         .parentElement.classList.remove('active')
