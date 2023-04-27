@@ -142,6 +142,7 @@ function openTab(route) {
         document
             .querySelector(`.${gCurrRoute}-container`)
             .classList.remove('hide-right')
+        hideSections()
         document.querySelector(`.${route}-container`).classList.remove('none')
         renderMeme()
         await clearAnimation(route)
