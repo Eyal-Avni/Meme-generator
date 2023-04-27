@@ -23,8 +23,9 @@
 }
 
 .imgs-list .add-new-img:hover {
-    outline: 5px solid yellow;
+    outline: 5px solid transparent;
     outline-offset: -5px;
+    animation: outline-gradient 2s linear infinite;
 }
 
 .add-new-img label {
@@ -42,11 +43,13 @@
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
+    position: relative;
 }
 
 .imgs-list img:hover {
-    outline: 5px solid yellow;
+    outline: 5px solid transparent;
     outline-offset: -5px;
+    animation: outline-gradient 2s linear infinite;
 }
 
 .gallery-control-bar {

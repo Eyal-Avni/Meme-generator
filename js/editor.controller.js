@@ -129,7 +129,6 @@ function onPress(ev) {
     gDrag = true
     const pos = getEvPos(ev)
     const isLineClick = isLineClicked(pos)
-    console.log(isLineClick)
     if (!isLineClick) return
     updateLineInputTxt()
     renderMeme()
@@ -200,8 +199,9 @@ function renderLineFocus() {
     const currLine = getCurrLine()
     if (!currLine) return
     gCtx.beginPath()
-    gCtx.lineWidth = '3'
-    gCtx.strokeStyle = 'yellow'
+    gCtx.lineWidth = '1'
+    gCtx.setLineDash([20, 3, 3, 3, 3, 3, 3, 3])
+    gCtx.strokeStyle = 'black'
     gCtx.roundRect(
         currLine.posX - gCtx.measureText(currLine.txt).width / 2 - 10,
         currLine.posY - currLine.size + 5,
@@ -224,6 +224,7 @@ function renderLineFocus() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
+    // gElCanvas.height = elContainer.offsetHeight
 }
 
 function loadFont(font) {

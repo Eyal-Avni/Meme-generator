@@ -60,7 +60,8 @@
 }
 
 .control-box .txt-actions button:hover {
-    outline: 5px solid yellow;
+    outline: 5px solid transparent;
+    animation: outline-gradient 2s linear infinite;
 }
 
 .control-box .txt-actions button:nth-of-type(5) {
@@ -129,7 +130,8 @@
 }
 
 .control-box .txt-manipulation > *:hover {
-    outline: 5px solid yellow;
+    outline: 5px solid transparent;
+    animation: outline-gradient 2s linear infinite;
 }
 
 .txt-manipulation button i {
@@ -218,5 +220,6 @@
 }
 
 .meme-actions button:hover {
-    outline: 5px solid yellow;
+    outline: 5px solid transparent;
+    animation: outline-gradient 2s linear infinite;
 }
