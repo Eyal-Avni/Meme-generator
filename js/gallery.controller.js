@@ -22,6 +22,17 @@ function renderMemes() {
     elGallery.innerHTML = strHtmls
 }
 
+function renderKeywordList() {
+    const keywordsList = getKeywordsList()
+    var strHtmls = keywordsList
+        .map((keyword) => {
+            return `<option value="${keyword}"></option>`
+        })
+        .join('')
+    const elList = document.querySelector('#keywords-list')
+    elList.innerHTML = strHtmls
+}
+
 function onImgSelect(imgIdx) {
     const img = findImgByIdx(imgIdx)
     setSelectedImgId(img)
@@ -51,6 +62,19 @@ function onEditMeme(id) {
     updateLineInputTxt()
     renderMeme()
     routeToEditor()
+}
+
+function onChangeFilterGallery(keyword) {
+    setFilterKeyword(keyword)
+    renderGallery()
+}
+
+function onSubmitFilterGallery(ev) {
+    ev.preventDefault()
+    const elInput = document.querySelector('form .gallery-search')
+    setFilterKeyword(elInput.value)
+    renderGallery()
+    elInput.value = ''
 }
 
 function routeToEditor() {

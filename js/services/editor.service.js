@@ -39,7 +39,7 @@ var gMeme = {
 }
 
 var gCurrImgIdx
-var gFillterBy = null
+var gFillterKeyword = null
 
 function getMeme() {
     return gMeme
@@ -146,8 +146,34 @@ function deleteLine() {
 }
 
 function getImgs() {
-    if (!gFillterBy) return gImgs
-    return gImgs.filter((img) => img.keywords.includes(gFillterBy))
+    if (!gFillterKeyword) return gImgs
+    return gImgs.filter((img) => img.keywords.includes(gFillterKeyword))
+}
+
+function getKeywordsList() {
+    const uniqueKeywords = []
+    gImgs.forEach((img) => {
+        img.keywords.forEach((keyword) => {
+            if (!uniqueKeywords.includes(keyword)) {
+                uniqueKeywords.push(keyword)
+            }
+        })
+    })
+    return uniqueKeywords
+}
+
+function getKeywordMap() {
+    const keywordMap = gImgs.reduce((acc, img) => {
+        img.keywords.forEach((keyword) => {
+            if (acc[keyword]) {
+                acc[keyword]++
+            } else {
+                acc[keyword] = 1
+            }
+        })
+        return acc
+    }, {})
+    return keywordMap
 }
 
 function findImgByIdx(id) {
@@ -202,6 +228,10 @@ function saveMeme(canvasUrl) {
 function setCurrMemeById(id) {
     const meme = gMemes.find((meme) => meme.memeObj.id === id)
     gMeme = meme.memeObj
+}
+
+function setFilterKeyword(keyword) {
+    gFillterKeyword = keyword
 }
 
 //Private methods

@@ -10,6 +10,7 @@ function onInit() {
     renderMeme()
     renderGallery()
     renderMemes()
+    renderKeywordList()
     addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()

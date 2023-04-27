@@ -48,11 +48,16 @@
                 <button class="gallery-btn-flexible" onclick="onFlexible()">
                     i'm flexible
                 </button>
-                <input
-                    class="gallery-search"
-                    type="text"
-                    placeholder="Search"
-                />
+                <form onsubmit="onSubmitFilterGallery(event)">
+                    <input
+                        onchange="onChangeFilterGallery(this.value)"
+                        list="keywords-list"
+                        class="gallery-search"
+                        type="text"
+                        placeholder="Search"
+                    />
+                    <datalist id="keywords-list"></datalist>
+                </form>
                 <div class="gallery-keywords"></div>
             </div>
             <div class="imgs-list"></div>
