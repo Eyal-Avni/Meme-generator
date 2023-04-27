@@ -68,6 +68,10 @@ function setLineTxt(txt) {
     line.txt = txt
 }
 
+function setMemeId() {
+    gMeme.id = makeId()
+}
+
 function setLinePos(dir) {
     const line = getCurrLine()
     if (!line) return
@@ -202,7 +206,7 @@ function makeRandomMeme() {
     gMeme.selectedImgId = gImgs[getRandomIntInclusive(0, gImgs.length - 1)].id
     const numOfLines = getRandomIntInclusive(1, 2)
     gMeme.selectedLineIdx = numOfLines - 1
-    gMeme.id = makeId()
+    setMemeId()
     for (let i = 0; i < numOfLines; i++) {
         const txt = makeRandLine()
         const size = getRandomIntInclusive(5, 60)

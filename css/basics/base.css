@@ -8,6 +8,7 @@ html {
 body {
     margin: 0;
     background-color: var(--body-color);
+    font-family: poppins;
 }
 
 img {
@@ -15,6 +16,7 @@ img {
 }
 
 a {
+    color: inherit;
 }
 
 p {

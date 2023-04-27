@@ -9,11 +9,14 @@
         var(--grad-color1) 0%,
         var(--grad-color2) 100%
     );
+    font-size: 1.375em;
+    color: white;
 }
 
 .active {
     box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
     background-color: #fefefe;
+    color: var(--selected-color);
 }
 
 .main-nav .main-menu {
@@ -34,6 +37,7 @@
 .main-menu li:hover {
     box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
     background-color: #fefefe;
+    color: var(--selected-color);
 }
 
 .main-menu .btn-nav {

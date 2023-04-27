@@ -36,6 +36,7 @@ function renderKeywordList() {
 function onImgSelect(imgIdx) {
     const img = findImgByIdx(imgIdx)
     setSelectedImgId(img)
+    setMemeId()
     routeToEditor()
     renderMeme()
 }

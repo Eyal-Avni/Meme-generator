@@ -208,9 +208,9 @@ function renderLineFocus() {
     gCtx.lineWidth = '3'
     gCtx.strokeStyle = 'yellow'
     gCtx.roundRect(
-        (currLine.posX / 2 - currLine.txt.length * currLine.size * 0.15) * 2,
+        currLine.posX - gCtx.measureText(currLine.txt).width / 2 - 10,
         currLine.posY - currLine.size + 5,
-        currLine.txt.length * currLine.size * 0.6,
+        gCtx.measureText(currLine.txt).width + 20,
         currLine.size + 2,
         15
     )
