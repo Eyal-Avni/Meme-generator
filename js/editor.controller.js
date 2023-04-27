@@ -5,22 +5,6 @@ var gCtx
 var gCurrPos
 var gDrag
 
-function onInit() {
-    loadMemesFromStorage()
-    gElCanvas = document.querySelector('.meme-canvas')
-    gCtx = gElCanvas.getContext('2d')
-    addListeners()
-    renderMeme()
-    renderGallery()
-    renderMemes()
-    renderKeywordList()
-    addEventListener('resize', () => {
-        resizeCanvas()
-        renderMeme()
-    })
-    handleLineInputState()
-}
-
 function renderMeme() {
     const meme = getMeme()
     const img = new Image()
@@ -128,6 +112,17 @@ function onDownloadMeme() {
     document.body.appendChild(elA)
     elA.click()
     document.body.removeChild(elA)
+}
+
+async function onShareMeme() {
+    const canvasUrl = gElCanvas.toDataURL()
+    const blob = await (await fetch(canvasUrl)).blob()
+    const file = new File([blob], 'meme.png', { type: blob.type })
+    navigator.share({
+        title: 'My meme',
+        text: 'Check out this meme!',
+        files: [file],
+    })
 }
 
 function onPress(ev) {

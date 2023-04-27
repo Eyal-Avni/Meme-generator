@@ -1,5 +1,21 @@
 'use strict'
 
+function onInit() {
+    loadMemesFromStorage()
+    gElCanvas = document.querySelector('.meme-canvas')
+    gCtx = gElCanvas.getContext('2d')
+    addListeners()
+    renderMeme()
+    renderGallery()
+    renderMemes()
+    renderKeywordList()
+    addEventListener('resize', () => {
+        resizeCanvas()
+        renderMeme()
+    })
+    handleLineInputState()
+}
+
 function renderGallery() {
     const imgs = getImgs()
     var strHtmls = imgs

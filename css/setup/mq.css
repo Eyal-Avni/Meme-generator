@@ -1,0 +1,16 @@
+@media (max-width: 800px) {
+    .editor-container {
+        display: grid;
+        grid-template-columns:
+            20px
+            minmax(auto, 1fr)
+            20px;
+    }
+
+    .control-box {
+        grid-column: 2;
+    }
+}
+
+@media (min-width: 800px) {
+}
