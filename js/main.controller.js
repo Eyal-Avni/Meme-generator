@@ -1,6 +1,7 @@
 'use strict'
 
 var gCurrRoute
+var gMenuOpen
 
 async function onInit() {
     loadMemesFromStorage()
@@ -17,8 +18,12 @@ async function onInit() {
         if (gCurrRoute === 'editor') {
             renderMeme()
         }
+        if (gMenuOpen && window.innerWidth > 800) {
+            onToggleMenu()
+        }
     })
     handleLineInputState()
+    gMenuOpen = false
 }
 
 function renderGallery() {
@@ -132,8 +137,28 @@ function hideSections() {
     document.querySelector('.memes-container').classList.add('none')
 }
 
+function onToggleMenu() {
+    gMenuOpen = !gMenuOpen
+    document.body.classList.toggle('menu-open')
+    const elmains = document.querySelectorAll('main')
+    for (let elmain of elmains) {
+        elmain.classList.toggle('blur')
+    }
+    const elbtn = document.querySelector('.btn-toggle-menu')
+    if (gMenuOpen) {
+        elbtn.innerHTML = '<i class="fa-solid fa-x"></i>'
+        // document.querySelector('.main-nav').classList.remove('none')
+    } else {
+        elbtn.innerHTML = '<i class="fa-solid fa-bars">'
+        // document.querySelector('.main-nav').classList.add('none')
+    }
+}
+
 function openTab(route) {
     if (route === gCurrRoute) return
+    if (gMenuOpen) {
+        onToggleMenu()
+    }
     document
         .querySelector(`.${gCurrRoute}-container`)
         .classList.add('hide-right')

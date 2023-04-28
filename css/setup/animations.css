@@ -2,6 +2,12 @@
     0% {
         transform: translateX(0);
     }
+    20% {
+        transform: translateX(-10%);
+    }
+    30% {
+        transform: translateX(0);
+    }
     100% {
         transform: translateX(100%);
         opacity: 0;
@@ -84,7 +90,7 @@
 }
 
 .hide-right {
-    animation: slideOutRight 700ms ease forwards;
+    animation: slideOutRight 1000ms ease forwards;
     /* z-index: 1; */
 }
 

@@ -16,9 +16,21 @@
     height: 100%;
     width: 100%;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.275);
+    background-color: var(--search-bar-color);
     text-align: center;
     position: relative;
+    min-height: 200px;
+}
+
+.add-new-img i {
+    /* -webkit-text-stroke: 1px black; */
+    background: -webkit-linear-gradient(
+        0deg,
+        var(--grad-color2) 0%,
+        var(--grad-color1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .imgs-list .add-new-img:hover {
@@ -28,10 +40,11 @@
 }
 
 .add-new-img label {
-    position: absolute;
-    top: 50%;
+    /* position: absolute; */
+    /* top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+
     cursor: pointer;
     font-size: 8em;
 }
