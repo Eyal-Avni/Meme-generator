@@ -46,11 +46,11 @@ var gMeme = {
     ],
     selectedStickerIdx: 0,
     stickers: [
-        {
-            url: 'stickers/1.svg',
-            posX: 200,
-            posY: 200,
-        },
+        // {
+        //     url: 'stickers/1.svg',
+        //     posX: 200,
+        //     posY: 200,
+        // },
     ],
 }
 
@@ -92,7 +92,11 @@ function moveStickersSubArr(dir) {
     }
 }
 
-function addSticker() {}
+function addSticker(url) {
+    const newSticker = _createSticker(url)
+    gMeme.stickers.push(newSticker)
+    gMeme.selectedStickerIdx = gMeme.stickers.length - 1
+}
 
 function getMemes() {
     return gMemes
@@ -200,10 +204,16 @@ function addLine() {
     gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
-function deleteLine() {
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    if (!gMeme.selectedLineIdx) return
-    else gMeme.selectedLineIdx--
+function deleteObj(type) {
+    if (type === 'line') {
+        gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+        if (!gMeme.selectedLineIdx) return
+        else gMeme.selectedLineIdx--
+    } else if (type === 'sticker') {
+        gMeme.stickers.splice(gMeme.selectedStickerIdx, 1)
+        if (!gMeme.selectedStickerIdx) return
+        else gMeme.selectedStickerIdx--
+    }
 }
 
 function getImgs() {
@@ -264,6 +274,8 @@ function resetMeme() {
         selectedImgId: '1',
         selectedLineIdx: 0,
         lines: [],
+        selectedStickerIdx: 0,
+        stickers: [],
     }
 }
 function makeRandomMeme() {
@@ -323,12 +335,13 @@ function isLineClicked(clickedPos) {
 
 function isStickerClicked(clickedPos) {
     const stickers = getAllStickers()
+    if (!stickers) return
     const clickedStickerIdx = stickers.findIndex((sticker) => {
         return (
-            clickedPos.x >= sticker.posX - 40 &&
-            clickedPos.x <= sticker.posX + 40 &&
-            clickedPos.y >= sticker.posY - 40 &&
-            clickedPos.y <= sticker.posY + 40
+            clickedPos.x >= sticker.posX - 5 &&
+            clickedPos.x <= sticker.posX + 55 &&
+            clickedPos.y >= sticker.posY - 5 &&
+            clickedPos.y <= sticker.posY + 55
         )
     })
     if (clickedStickerIdx !== -1) {
@@ -393,6 +406,14 @@ function _createLine(
         posX: newPos.x,
         posY: newPos.y,
         stroke,
+    }
+}
+
+function _createSticker(url) {
+    return {
+        url,
+        posX: 200,
+        posY: 200,
     }
 }
 

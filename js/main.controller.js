@@ -57,7 +57,7 @@ function renderStickers() {
     const stickers = getStickersSubArr()
     var strHtmls = stickers
         .map((sticker) => {
-            return `<img src="${sticker}">`
+            return `<img src="${sticker}" onclick="onAddSticker(this)">`
         })
         .join('')
     const elStickers = document.querySelector('.stickers-list')
@@ -223,4 +223,13 @@ function toggleNavButtons(route) {
     document
         .querySelector(`.main-menu .btn-${route}`)
         .parentElement.classList.add('active')
+}
+
+function addListeners() {
+    gElCanvas.addEventListener('mousemove', onDrag)
+    gElCanvas.addEventListener('mousedown', onPress)
+    gElCanvas.addEventListener('mouseup', onRelease)
+    gElCanvas.addEventListener('touchmove', onDrag)
+    gElCanvas.addEventListener('touchstart', onPress)
+    gElCanvas.addEventListener('touchend', onRelease)
 }

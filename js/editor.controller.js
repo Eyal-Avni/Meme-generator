@@ -15,7 +15,7 @@ function renderMeme() {
         resizeCanvas()
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         renderLines()
-        renderLineFocus()
+        renderObjFocus()
         renderMemeStickers()
         gCtx.save()
     }
@@ -42,15 +42,6 @@ function renderMemeStickers() {
         img.src = sticker.url
         gCtx.drawImage(img, sticker.posX, sticker.posY, 50, 50)
     })
-}
-
-function addListeners() {
-    gElCanvas.addEventListener('mousemove', onDrag)
-    gElCanvas.addEventListener('mousedown', onPress)
-    gElCanvas.addEventListener('mouseup', onRelease)
-    gElCanvas.addEventListener('touchmove', onDrag)
-    gElCanvas.addEventListener('touchstart', onPress)
-    gElCanvas.addEventListener('touchend', onRelease)
 }
 
 function onChangeLineTxt(txt) {
@@ -87,8 +78,14 @@ function onNewLine() {
     renderMeme()
 }
 
-function onDeleteLine() {
-    deleteLine()
+function onAddSticker(elSticker) {
+    const url = elSticker.getAttribute('src')
+    addSticker(url)
+    renderMeme()
+}
+
+function onDeleteOjb() {
+    deleteObj(gSelectedType)
     handleLineInputState()
     renderMeme()
 }
@@ -220,20 +217,29 @@ function handleLineInputState() {
     }
 }
 
-function renderLineFocus() {
-    const currLine = getCurrLine()
-    if (!currLine) return
+function renderObjFocus() {
+    let currObj
+    if (gSelectedType === 'line') {
+        currObj = getCurrLine()
+    } else if (gSelectedType === 'sticker') {
+        currObj = getCurrSticker()
+    }
+    if (!currObj) return
     gCtx.beginPath()
     gCtx.lineWidth = '1'
     gCtx.setLineDash([20, 3, 3, 3, 3, 3, 3, 3])
     gCtx.strokeStyle = 'black'
-    gCtx.roundRect(
-        currLine.posX - gCtx.measureText(currLine.txt).width / 2 - 10,
-        currLine.posY - currLine.size + 5,
-        gCtx.measureText(currLine.txt).width + 20,
-        currLine.size + 2,
-        15
-    )
+    if (gSelectedType === 'line') {
+        gCtx.roundRect(
+            currObj.posX - gCtx.measureText(currObj.txt).width / 2 - 10,
+            currObj.posY - currObj.size + 5,
+            gCtx.measureText(currObj.txt).width + 20,
+            currObj.size + 2,
+            15
+        )
+    } else if (gSelectedType === 'sticker') {
+        gCtx.roundRect(currObj.posX, currObj.posY, 50, 50, 15)
+    }
     gCtx.stroke()
 }
 
