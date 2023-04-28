@@ -14,6 +14,7 @@ async function onInit() {
     renderStickers()
     renderMemes()
     renderKeywordList()
+    renderKeywordSection()
     addEventListener('resize', () => {
         resizeCanvas()
         if (gCurrRoute === 'editor') {
@@ -77,12 +78,32 @@ function renderMemes() {
 
 function renderKeywordList() {
     const keywordsList = getKeywordsList()
-    var strHtmls = keywordsList
+    var strHtmls = `<option value="All"></option>`
+    strHtmls += keywordsList
         .map((keyword) => {
             return `<option value="${keyword}"></option>`
         })
         .join('')
     const elList = document.querySelector('#keywords-list')
+    elList.innerHTML = strHtmls
+}
+
+function renderKeywordSection() {
+    const keywordsMap = getKeywordsMap()
+    const keywordsList = getKeywordsList()
+    var strHtmls = `<a href="#" style="font-size: ${
+        keywordsList.length * 3 + 10
+    }px" onclick="onChangeFilterGallery('All')">All</a>`
+    strHtmls += keywordsList
+        .map((keyword) => {
+            return `<a href="#" style="font-size: ${
+                keywordsMap[keyword] * 3 + 10
+            }px" onclick="onChangeFilterGallery('${keyword}')">${keyword}</a>`
+        })
+        .join('')
+    const elList = document.querySelector(
+        '.gallery-container .gallery-keywords'
+    )
     elList.innerHTML = strHtmls
 }
 
@@ -125,14 +146,6 @@ function onChangeFilterGallery(keyword) {
     renderGallery()
 }
 
-function onSubmitFilterGallery(ev) {
-    ev.preventDefault()
-    const elInput = document.querySelector('form .gallery-search')
-    setFilterKeyword(elInput.value)
-    renderGallery()
-    elInput.value = ''
-}
-
 function onUploadImg(ev) {
     var reader = new FileReader()
     reader.onload = (event) => {
@@ -161,10 +174,8 @@ function onToggleMenu() {
     const elbtn = document.querySelector('.btn-toggle-menu')
     if (gMenuOpen) {
         elbtn.innerHTML = '<i class="fa-solid fa-x"></i>'
-        // document.querySelector('.main-nav').classList.remove('none')
     } else {
         elbtn.innerHTML = '<i class="fa-solid fa-bars">'
-        // document.querySelector('.main-nav').classList.add('none')
     }
 }
 
@@ -206,6 +217,9 @@ function clearAnimation(route) {
             document
                 .querySelector(`.${route}-container`)
                 .classList.remove('show-right')
+            if (window.innerWidth > window.outerWidth)
+                document.body.style.zoom = 0.8
+            else document.body.style.zoom = 1
         }, 700)
     })
 }

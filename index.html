@@ -49,21 +49,21 @@
         </header>
         <main class="gallery-container">
             <div class="gallery-control-bar flex align-center">
-                <button class="gallery-btn-flexible" onclick="onFlexible()">
-                    I'm flexible
-                </button>
-                <form onsubmit="onSubmitFilterGallery(event)">
+                <form class="gallery-search">
                     <input
                         onchange="onChangeFilterGallery(this.value)"
+                        class="input-gallery-search"
                         list="keywords-list"
-                        class="gallery-search"
                         type="text"
                         placeholder="Search"
                     />
                     <datalist id="keywords-list"></datalist>
                 </form>
-                <div class="gallery-keywords"></div>
+                <button class="gallery-btn-flexible" onclick="onFlexible()">
+                    I'm flexible
+                </button>
             </div>
+            <div class="gallery-keywords flex"></div>
             <div class="imgs-list"></div>
         </main>
 

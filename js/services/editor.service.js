@@ -218,6 +218,7 @@ function deleteObj(type) {
 
 function getImgs() {
     if (!gFillterKeyword) return gImgs
+    if (gFillterKeyword === 'All') return gImgs
     return gImgs.filter((img) => img.keywords.includes(gFillterKeyword))
 }
 
@@ -241,7 +242,7 @@ function getKeywordsList() {
     return uniqueKeywords
 }
 
-function getKeywordMap() {
+function getKeywordsMap() {
     const keywordMap = gImgs.reduce((acc, img) => {
         img.keywords.forEach((keyword) => {
             if (acc[keyword]) {
