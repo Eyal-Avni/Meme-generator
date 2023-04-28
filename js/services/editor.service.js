@@ -322,13 +322,14 @@ function loadImgsFromStorage() {
     gImgs = loadFromStorage(IMGS_KEY)
     if (!gImgs)
         gImgs = [
-            { id: makeId(), url: 'imgs/1.jpg', keywords: ['politics'] },
-            { id: makeId(), url: 'imgs/2.jpg', keywords: ['animals'] },
-            { id: makeId(), url: 'imgs/3.jpg', keywords: ['animals', 'kids'] },
-            { id: makeId(), url: 'imgs/4.jpg', keywords: ['animals'] },
-            { id: makeId(), url: 'imgs/5.jpg', keywords: ['kids'] },
-            { id: makeId(), url: 'imgs/6.jpg', keywords: ['TV'] },
-            { id: makeId(), url: 'imgs/7.jpg', keywords: ['kids'] },
-            { id: makeId(), url: 'imgs/8.jpg', keywords: ['movies'] },
+            { id: '1', url: 'imgs/1.jpg', keywords: ['politics'] },
+            { id: '2', url: 'imgs/2.jpg', keywords: ['animals'] },
+            { id: '3', url: 'imgs/3.jpg', keywords: ['animals', 'kids'] },
+            { id: '4', url: 'imgs/4.jpg', keywords: ['animals'] },
+            { id: '5', url: 'imgs/5.jpg', keywords: ['kids'] },
+            { id: '6', url: 'imgs/6.jpg', keywords: ['TV'] },
+            { id: '7', url: 'imgs/7.jpg', keywords: ['kids'] },
+            { id: '8', url: 'imgs/8.jpg', keywords: ['movies'] },
+            { id: '9', url: 'imgs/9.png', keywords: ['movies'] },
         ]
 }

@@ -4,14 +4,13 @@
     display: grid;
     grid-template-columns:
         minmax(10px, 1fr)
-        minmax(auto, 1250px)
+        minmax(auto, 12fr)
         minmax(10px, 1fr);
     gap: 15px;
 }
 
 .main-layout > .full {
     grid-column: 1 / -1;
-    margin-inline: 10px;
 }
 
 .main-layout > *:not(.full) {

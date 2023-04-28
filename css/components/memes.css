@@ -3,3 +3,11 @@
     padding: 10px;
     border-radius: 10px;
 }
+.memes-container .imgs-list {
+    justify-items: start;
+}
+
+.memes-container img {
+    max-width: 250px;
+    max-height: 250px;
+}

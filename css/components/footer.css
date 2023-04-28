@@ -1,0 +1,18 @@
+.main-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    margin: 0;
+    background-color: var(--container-color);
+    border-top-right-radius: -20px;
+    border-top-left-radius: -20px;
+    justify-content: center;
+    border-block-start: 3px solid var(--grad-color2);
+}
+
+.main-footer .copyrights {
+    font-weight: 700;
+    color: var(--grad-color2);
+}

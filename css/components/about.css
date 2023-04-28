@@ -1,0 +1,12 @@
+.about-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--grad-color2);
+}
+
+.about-container img {
+    width: 50%;
+    height: 80%;
+    border-radius: 20px;
+}

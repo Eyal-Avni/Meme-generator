@@ -42,6 +42,7 @@ function renderGallery() {
                                 accept="image/*"
                             />
                     </div>`
+
     strHtmls += imgs
         .map((img) => {
             return `<img src="${img.url}" onclick="onImgSelect('${img.id}')">`
@@ -135,6 +136,7 @@ function hideSections() {
     document.querySelector('.gallery-container').classList.add('none')
     document.querySelector('.editor-container').classList.add('none')
     document.querySelector('.memes-container').classList.add('none')
+    document.querySelector('.about-container').classList.add('none')
 }
 
 function onToggleMenu() {

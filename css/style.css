@@ -12,6 +12,8 @@
 @import 'components/nav.css';
 @import 'components/editor.css';
 @import 'components/memes.css';
+@import 'components/footer.css';
+@import 'components/about.css';
 
 /* MEDIA QUERIS */
 @import 'setup/mq.css';
