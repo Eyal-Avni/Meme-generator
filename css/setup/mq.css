@@ -1,3 +1,11 @@
+@media (max-width: 900px) {
+    .stickers-container .stickers-list img {
+        width: 35px;
+        height: 35px;
+        margin-inline: 10px;
+    }
+}
+
 @media (max-width: 800px) {
     .editor-container {
         display: grid;
@@ -56,6 +64,12 @@
 
     .main-header .btn-toggle-menu {
         display: inline-block;
+    }
+
+    .stickers-container .stickers-list img {
+        width: 40px;
+        height: 40px;
+        margin-inline: 10px;
     }
 }
 

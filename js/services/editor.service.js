@@ -3,6 +3,22 @@
 const MEMES_KEY = 'memesDB'
 const IMGS_KEY = 'imgsDB'
 
+var gStickers = [
+    'stickers/1.svg',
+    'stickers/2.svg',
+    'stickers/3.svg',
+    'stickers/4.svg',
+    'stickers/5.svg',
+    'stickers/6.svg',
+    'stickers/7.svg',
+    'stickers/8.svg',
+    'stickers/9.svg',
+]
+
+var gSubStickers = [gStickers[0], gStickers[1], gStickers[2]]
+var gSubStickersHead = gSubStickers.length - 1
+var gSubStickersTail = 0
+
 var gMemes = []
 
 var gImgs
@@ -28,6 +44,14 @@ var gMeme = {
         //     posY: 250,
         // },
     ],
+    selectedStickerIdx: 0,
+    stickers: [
+        {
+            url: 'stickers/1.svg',
+            posX: 200,
+            posY: 200,
+        },
+    ],
 }
 
 var gFillterKeyword = null
@@ -35,6 +59,40 @@ var gFillterKeyword = null
 function getMeme() {
     return gMeme
 }
+
+function getStickersSubArr() {
+    return gSubStickers
+}
+
+function moveStickersSubArr(dir) {
+    if (dir === 'prev') {
+        gSubStickersHead--
+        gSubStickersTail--
+        gSubStickers[2] = gSubStickers[1]
+        gSubStickers[1] = gSubStickers[0]
+        if (gSubStickersTail === -1) {
+            gSubStickersTail = gStickers.length - 1
+            gSubStickers[0] = gStickers[gSubStickersTail]
+        } else gSubStickers[0] = gStickers[gSubStickersTail]
+        if (gSubStickersHead === -1) {
+            gSubStickersHead = gStickers.length - 1
+        }
+    } else if (dir === 'next') {
+        gSubStickersHead++
+        gSubStickersTail++
+        gSubStickers[0] = gSubStickers[1]
+        gSubStickers[1] = gSubStickers[2]
+        if (gSubStickersHead === gStickers.length) {
+            gSubStickersHead = 0
+            gSubStickers[2] = gStickers[gSubStickersHead]
+        } else gSubStickers[2] = gStickers[gSubStickersHead]
+        if (gSubStickersTail === gStickers.length) {
+            gSubStickersTail = 0
+        }
+    }
+}
+
+function addSticker() {}
 
 function getMemes() {
     return gMemes
@@ -49,8 +107,16 @@ function getCurrLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+function getCurrSticker() {
+    return gMeme.stickers[gMeme.selectedStickerIdx]
+}
+
 function getAllLines() {
     return gMeme.lines
+}
+
+function getAllStickers() {
+    return gMeme.stickers
 }
 
 function setLineTxt(txt) {
@@ -255,33 +321,58 @@ function isLineClicked(clickedPos) {
     return false
 }
 
-function moveXAxis(distance) {
-    const line = getCurrLine()
-    if (line.posX > gElCanvas.width - 10) {
-        line.posX = gElCanvas.width - 10
-        return
+function isStickerClicked(clickedPos) {
+    const stickers = getAllStickers()
+    const clickedStickerIdx = stickers.findIndex((sticker) => {
+        return (
+            clickedPos.x >= sticker.posX - 40 &&
+            clickedPos.x <= sticker.posX + 40 &&
+            clickedPos.y >= sticker.posY - 40 &&
+            clickedPos.y <= sticker.posY + 40
+        )
+    })
+    if (clickedStickerIdx !== -1) {
+        gMeme.selectedStickerIdx = clickedStickerIdx
+        return true
     }
-    if (line.posX < 10) {
-        line.posX = 10
-        return
-    }
-    line.posX += distance
+    return false
 }
 
-function moveYAxis(distance) {
-    const line = getCurrLine()
-    if (line.posY > gElCanvas.height - 10) {
-        line.posY = gElCanvas.height - 10
+function moveXAxis(distance, type) {
+    let obj
+    if (type === 'line') {
+        obj = getCurrLine()
+    } else if (type === 'sticker') {
+        obj = getCurrSticker()
+    }
+    if (obj.posX > gElCanvas.width - 10) {
+        obj.posX = gElCanvas.width - 10
         return
     }
-    if (line.posY < 10) {
-        line.posY = 10
+    if (obj.posX < 10) {
+        obj.posX = 10
         return
     }
-    line.posY += distance
+    obj.posX += distance
 }
 
-//Private methods
+function moveYAxis(distance, type) {
+    let obj
+    if (type === 'line') {
+        obj = getCurrLine()
+    } else if (type === 'sticker') {
+        obj = getCurrSticker()
+    }
+    if (obj.posY > gElCanvas.height - 10) {
+        obj.posY = gElCanvas.height - 10
+        return
+    }
+    if (obj.posY < 10) {
+        obj.posY = 10
+        return
+    }
+    obj.posY += distance
+}
 
 function _createLine(
     numNewLine,

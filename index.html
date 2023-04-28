@@ -50,7 +50,7 @@
         <main class="gallery-container">
             <div class="gallery-control-bar flex align-center">
                 <button class="gallery-btn-flexible" onclick="onFlexible()">
-                    i'm flexible
+                    I'm flexible
                 </button>
                 <form onsubmit="onSubmitFilterGallery(event)">
                     <input
@@ -136,6 +136,21 @@
                         <option value="righteous">Righteous</option>
                         <option value="sigmar">Sigmar</option>
                     </select>
+                </div>
+                <div class="stickers-container flex">
+                    <button
+                        class="prev-stickers"
+                        onclick="onStickerPage('prev')"
+                    >
+                        <i class="fa-solid fa-backward"></i>
+                    </button>
+                    <div class="stickers-list"></div>
+                    <button
+                        class="next-stickers"
+                        onclick="onStickerPage('next')"
+                    >
+                        <i class="fa-solid fa-forward"></i>
+                    </button>
                 </div>
                 <div class="meme-actions flex align-center">
                     <button class="share-meme flex" onclick="onShareMeme()">

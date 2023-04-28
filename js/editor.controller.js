@@ -4,6 +4,7 @@ var gElCanvas
 var gCtx
 var gCurrPos
 var gDrag
+var gSelectedType
 
 function renderMeme() {
     const meme = getMeme()
@@ -15,6 +16,7 @@ function renderMeme() {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         renderLines()
         renderLineFocus()
+        renderMemeStickers()
         gCtx.save()
     }
 }
@@ -29,6 +31,16 @@ function renderLines() {
         gCtx.strokeStyle = line.stroke
         gCtx.fillText(line.txt, line.posX, line.posY)
         gCtx.strokeText(line.txt, line.posX, line.posY)
+    })
+}
+
+function renderMemeStickers() {
+    const stickers = getAllStickers()
+    if (!stickers) return
+    stickers.forEach((sticker) => {
+        const img = new Image()
+        img.src = sticker.url
+        gCtx.drawImage(img, sticker.posX, sticker.posY, 50, 50)
     })
 }
 
@@ -128,8 +140,11 @@ async function onShareMeme() {
 function onPress(ev) {
     gDrag = true
     const pos = getEvPos(ev)
-    const isLineClick = isLineClicked(pos)
-    if (!isLineClick) return
+    if (!isLineClicked(pos)) {
+        if (!isStickerClicked(pos)) {
+            return
+        } else gSelectedType = 'sticker'
+    } else gSelectedType = 'line'
     updateLineInputTxt()
     renderMeme()
     gCurrPos = pos
@@ -142,16 +157,26 @@ function onRelease() {
 }
 
 function onDrag(ev) {
-    const currLine = getCurrLine()
-    if (!currLine || !gDrag) return
+    let currObj
+    if (gSelectedType === 'line') {
+        currObj = getCurrLine()
+    } else if (gSelectedType === 'sticker') {
+        currObj = getCurrSticker()
+    }
+    if (!currObj || !gDrag) return
     const pos = getEvPos(ev)
-    if (currLine && gDrag) {
-        moveXAxis(pos.x - gCurrPos.x)
-        moveYAxis(pos.y - gCurrPos.y)
+    if (currObj && gDrag) {
+        moveXAxis(pos.x - gCurrPos.x, gSelectedType)
+        moveYAxis(pos.y - gCurrPos.y, gSelectedType)
     }
     gElCanvas.style.cursor = 'grabbing'
     gCurrPos = pos
     renderMeme()
+}
+
+function onStickerPage(dir) {
+    moveStickersSubArr(dir)
+    renderStickers()
 }
 
 function handleCanvasAspectRatioForSave() {
@@ -225,6 +250,17 @@ function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     // gElCanvas.height = elContainer.offsetHeight
+    // elContainer.width = (gElCanvas.height * img.height) / img.width
+    // elContainer.height = (img.height * gElCanvas.width) / img.width
+    // gElCanvas.width = (gElCanvas.height * img.height) / img.width
+    // gElCanvas.height = (img.height * gElCanvas.width) / img.width
+}
+
+function buildCurrImg() {
+    const imgURL = getImgURL(getMeme())
+    const img = new Image()
+    img.src = imgURL
+    return img
 }
 
 function loadFont(font) {

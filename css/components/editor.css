@@ -39,7 +39,6 @@
 .control-box .txt-actions {
     grid-column: 1/-1;
     justify-content: center;
-    flex-wrap: wrap;
 }
 
 .control-box .txt-actions > * {
@@ -182,10 +181,31 @@
 
 .control-box .input-line {
     grid-column: 2;
-
     border-radius: 20px;
     font-size: 1.5625em;
     text-align: center;
+}
+
+.control-box .stickers-container {
+    height: 60px;
+    grid-column: 1/-1;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin-inline: 10px;
+    background-color: white;
+}
+
+.control-box .stickers-container button {
+    background-color: transparent;
+    border: 0;
+}
+
+.stickers-container .stickers-list img {
+    width: 40px;
+    height: 40px;
+    margin-inline: 15px;
 }
 
 .control-box .meme-actions {

@@ -11,6 +11,7 @@ async function onInit() {
     gCurrRoute = 'gallery'
     addListeners()
     renderGallery()
+    renderStickers()
     renderMemes()
     renderKeywordList()
     addEventListener('resize', () => {
@@ -50,6 +51,17 @@ function renderGallery() {
         .join('')
     const elGallery = document.querySelector('.gallery-container > .imgs-list')
     elGallery.innerHTML = strHtmls
+}
+
+function renderStickers() {
+    const stickers = getStickersSubArr()
+    var strHtmls = stickers
+        .map((sticker) => {
+            return `<img src="${sticker}">`
+        })
+        .join('')
+    const elStickers = document.querySelector('.stickers-list')
+    elStickers.innerHTML = strHtmls
 }
 
 function renderMemes() {
