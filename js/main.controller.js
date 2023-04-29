@@ -27,6 +27,7 @@ async function onInit() {
         }
     })
     handleLineInputState()
+    onSetLang('en')
     gMenuOpen = false
 }
 
@@ -80,10 +81,10 @@ function renderMemes() {
 
 function renderKeywordList() {
     const keywordsList = getKeywordsList()
-    var strHtmls = `<option value="All"></option>`
+    var strHtmls = `<option data-trans="keyword-all" value="All"></option>`
     strHtmls += keywordsList
         .map((keyword) => {
-            return `<option value="${keyword}"></option>`
+            return `<option data-trans="keyword-${keyword}" value="${keyword}"></option>`
         })
         .join('')
     const elList = document.querySelector('#keywords-list')
@@ -93,12 +94,12 @@ function renderKeywordList() {
 function renderKeywordSection() {
     const keywordsMap = getKeywordsMap()
     const keywordsList = getKeywordsList()
-    var strHtmls = `<a href="#" style="font-size: ${
+    var strHtmls = `<a data-trans="keyword-all" href="#" style="font-size: ${
         keywordsList.length * 3 + 10
     }px" onclick="onChangeFilterGallery('All')">All</a>`
     strHtmls += keywordsList
         .map((keyword) => {
-            return `<a href="#" style="font-size: ${
+            return `<a data-trans="keyword-${keyword}" href="#" style="font-size: ${
                 keywordsMap[keyword] * 3 + 10
             }px" onclick="onChangeFilterGallery('${keyword}')">${keyword}</a>`
         })
@@ -248,4 +249,28 @@ function addListeners() {
     gElCanvas.addEventListener('touchmove', onDrag)
     gElCanvas.addEventListener('touchstart', onPress)
     gElCanvas.addEventListener('touchend', onRelease)
+}
+
+function onSetLang(lang) {
+    setLang(lang)
+    const elEngLable = document.querySelector('.lang-en')
+    const elHebLable = document.querySelector('.lang-he')
+    if (lang === 'he') {
+        document.body.style.fontFamily = 'rubik'
+        document.body.style.direction = 'rtl'
+        elEngLable.classList.remove('lang-active')
+        elHebLable.classList.add('lang-active')
+        elEngLable.classList.remove('animate-charcter')
+        elHebLable.classList.add('animate-charcter')
+    } else {
+        document.body.style.fontFamily = 'poppins'
+        document.body.style.direction = 'ltr'
+        elEngLable.classList.add('lang-active')
+        elHebLable.classList.remove('lang-active')
+        elEngLable.classList.add('animate-charcter')
+        elHebLable.classList.remove('animate-charcter')
+    }
+    renderKeywordList()
+    renderKeywordSection()
+    doTrans()
 }

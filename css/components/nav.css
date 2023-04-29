@@ -33,17 +33,29 @@
 .main-menu li {
     flex: 1 1 auto;
     width: 100px;
-    height: 40px;
     border-radius: 20px;
     padding-inline: 20px;
     margin-inline-end: 10px;
     position: relative;
 }
 
+.main-menu li:last-of-type {
+    width: 200px;
+    justify-self: end;
+    justify-content: end;
+    justify-items: end;
+}
+
 .main-menu li:hover {
     box-shadow: 0 3px 6px 1px rgba(0, 0, 0, 0.15);
     background-color: #fefefe;
     color: var(--grad-color2);
+}
+
+.main-menu li:last-of-type:hover {
+    box-shadow: none;
+    background-color: transparent;
+    color: white;
 }
 
 .main-menu .btn-nav {

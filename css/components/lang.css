@@ -1,0 +1,13 @@
+.lang-select > * {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    justify-content: end;
+    justify-items: end;
+    align-items: end;
+    align-content: end;
+}
+
+.lang-active {
+    font-weight: 700;
+}

@@ -14,11 +14,14 @@
 
     <body class="main-layout" onload="onInit()">
         <header class="main-header flex space-between align-center full">
-            <div class="logo animate-charcter">Meme generator</div>
+            <div data-trans="logo" class="logo animate-charcter">
+                Meme generator
+            </div>
             <nav class="main-nav">
                 <ul class="clean-list main-menu">
                     <li>
                         <a
+                            data-trans="nav-gallery"
                             href="#"
                             class="btn-nav btn-gallery"
                             onclick="onRoute('gallery')"
@@ -27,6 +30,7 @@
                     </li>
                     <li>
                         <a
+                            data-trans="nav-memes"
                             href="#"
                             class="btn-nav btn-memes"
                             onclick="onRoute('memes')"
@@ -35,11 +39,46 @@
                     </li>
                     <li>
                         <a
+                            data-trans="nav-about"
                             href="#"
                             class="btn-nav btn-about"
                             onclick="onRoute('about')"
                             >About</a
                         >
+                    </li>
+                    <li class="lang-select flex" role="group">
+                        <!-- <div > -->
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            name="btnradio"
+                            id="english"
+                            value="en"
+                            onchange="onSetLang(this.value)"
+                            checked
+                        />
+                        <label
+                            data-trans="nav-lang-en"
+                            class="flex lang-en"
+                            for="english"
+                            >English</label
+                        >
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            name="btnradio"
+                            id="hebrew"
+                            value="he"
+                            onchange="onSetLang(this.value)"
+                            autocomplete="off"
+                        />
+                        <label
+                            data-trans="nav-lang-he"
+                            class="flex lang-he"
+                            for="hebrew"
+                            >Hebrew</label
+                        >
+                        <!-- </div> -->
                     </li>
                 </ul>
             </nav>
@@ -51,6 +90,7 @@
             <div class="gallery-control-bar flex align-center">
                 <form class="gallery-search">
                     <input
+                        data-trans="search-placeholder"
                         onchange="onChangeFilterGallery(this.value)"
                         class="input-gallery-search"
                         list="keywords-list"
@@ -59,7 +99,11 @@
                     />
                     <datalist id="keywords-list"></datalist>
                 </form>
-                <button class="gallery-btn-flexible" onclick="onFlexible()">
+                <button
+                    data-trans="im-flexible"
+                    class="gallery-btn-flexible"
+                    onclick="onFlexible()"
+                >
                     I'm flexible
                 </button>
             </div>
@@ -175,7 +219,9 @@
         </main>
 
         <main class="about-container none flex">
-            <h2 class="about-msg">Didn't have enough time for about page..</h2>
+            <h2 data-trans="about-msg" class="about-msg">
+                Didn't have enough time for about page..
+            </h2>
             <img src="imgs/about.jpg" alt="" />
         </main>
 
@@ -187,6 +233,7 @@
         <script src="js/services/storage.service.js"></script>
         <script src="js/services/main.service.js"></script>
         <script src="js/services/editor.service.js"></script>
+        <script src="js/services/i18n.service.js"></script>
         <script src="js/main.controller.js"></script>
         <script src="js/editor.controller.js"></script>
     </body>
