@@ -30,7 +30,7 @@ var gTrans = {
 
     'im-flexible': {
         en: "I'm flexible",
-        he: 'אני גמיש',
+        he: 'גמיש',
     },
     'about-msg': {
         en: "Didn't have enough time for about page..",

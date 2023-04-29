@@ -307,6 +307,12 @@ function saveMeme(canvasUrl) {
     _saveMemesToStorage()
 }
 
+function deleteMeme(id) {
+    const idx = gMemes.findIndex((meme) => meme.memeObj.id === id)
+    gMemes.splice(idx, 1)
+    _saveMemesToStorage()
+}
+
 function setCurrMemeById(id) {
     const meme = gMemes.find((meme) => meme.memeObj.id === id)
     gMeme = meme.memeObj

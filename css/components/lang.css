@@ -8,6 +8,10 @@
     align-content: end;
 }
 
+.lang-select label:hover {
+    cursor: pointer;
+}
+
 .lang-active {
     font-weight: 700;
 }

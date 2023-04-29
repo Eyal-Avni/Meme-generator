@@ -40,7 +40,7 @@
     .main-header .main-nav {
         position: fixed;
         top: 20vh;
-        right: 35vw;
+        right: 25vw;
         z-index: 1;
         padding-block: 20px;
         padding-inline: 20px;

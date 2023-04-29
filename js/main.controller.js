@@ -72,7 +72,16 @@ function renderMemes() {
     const memes = getMemes()
     var strHtmls = memes
         .map((meme) => {
-            return `<img src="${meme.memeImg}" onclick="onEditMeme('${meme.memeObj.id}')">`
+            return `
+            <div class="meme-container">
+                <img src="${meme.memeImg}" />
+                <div class="meme-modal">
+                <button class="edit-meme" onclick="onEditMeme('${meme.memeObj.id}')">
+                    Edit
+                </button>
+                <button class="delete-meme" onclick="onDeleteMeme('${meme.memeObj.id}')">Delete</button>
+            </div>
+        </div> `
         })
         .join('')
     const elGallery = document.querySelector('.memes-container > .imgs-list')
@@ -142,6 +151,14 @@ function onEditMeme(id) {
     updateLineInputTxt()
     openTab('editor')
     gCurrRoute = 'editor'
+}
+
+function onDeleteMeme(id) {
+    loadMemesFromStorage()
+    if (confirm('Are you sure you want to delete meme?')) {
+        deleteMeme(id)
+        renderMemes()
+    }
 }
 
 function onChangeFilterGallery(keyword) {
