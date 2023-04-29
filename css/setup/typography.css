@@ -1,19 +1,19 @@
 @font-face {
     font-family: poppins;
-    src: url(/fonts/poppins.ttf);
+    src: url(../../fonts/poppins.ttf);
 }
 
 @font-face {
     font-family: righteous;
-    src: url(/fonts/righteous.ttf);
+    src: url(../../fonts/righteous.ttf);
 }
 
 @font-face {
     font-family: sigmar;
-    src: url(/fonts/sigmar.ttf);
+    src: url(../../fonts/sigmar.ttf);
 }
 
 @font-face {
     font-family: rubik;
-    src: url(/fonts/rubik.ttf);
+    src: url(../../fonts/rubik.ttf);
 }
