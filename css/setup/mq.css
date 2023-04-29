@@ -88,7 +88,7 @@
     .editor-container {
         display: grid;
         grid-template-columns: minmax(auto, 1fr);
-        grid-template-rows: 60vh 38vh;
+        grid-template-rows: 40vh 38vh;
         gap: 10px;
     }
 
