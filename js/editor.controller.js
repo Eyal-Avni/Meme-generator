@@ -255,11 +255,7 @@ function renderObjFocus() {
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
-    // gElCanvas.height = elContainer.offsetHeight
-    // elContainer.width = (gElCanvas.height * img.height) / img.width
-    // elContainer.height = (img.height * gElCanvas.width) / img.width
-    // gElCanvas.width = (gElCanvas.height * img.height) / img.width
-    // gElCanvas.height = (img.height * gElCanvas.width) / img.width
+    gElCanvas.height = elContainer.offsetHeight
 }
 
 function buildCurrImg() {

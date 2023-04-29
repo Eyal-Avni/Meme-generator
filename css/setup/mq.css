@@ -7,7 +7,7 @@
 }
 
 @media (max-width: 800px) {
-    .editor-container {
+    /* .editor-container {
         display: grid;
         grid-template-columns:
             20px
@@ -17,6 +17,20 @@
 
     .control-box {
         grid-column: 2;
+    } */
+    .editor-container {
+        flex-direction: column;
+    }
+
+    .canvas-container {
+        margin-block-end: 20px;
+        margin-inline: 0;
+        /* flex-basis: 50%; */
+        width: auto;
+    }
+
+    .control-box {
+        /* flex-basis: 50%; */
     }
 
     .main-header {

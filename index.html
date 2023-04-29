@@ -67,8 +67,8 @@
             <div class="imgs-list"></div>
         </main>
 
-        <main class="editor-container none">
-            <div class="canvas-container">
+        <main class="editor-container flex full none">
+            <div class="canvas-container flex">
                 <canvas
                     class="meme-canvas"
                     height="500px"
@@ -83,6 +83,17 @@
                     placeholder="Please add new line"
                 />
                 <div class="txt-actions flex align-center">
+                    <button onclick="onMoveBetweenLines()">
+                        <img src="icons/up-down-arrows.png" alt="" />
+                    </button>
+                    <button onclick="onNewLine()">
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <button onclick="onDeleteOjb()">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+                <div class="txt-manipulation flex align-center">
                     <button onclick="onMoveLine('up')">
                         <i class="fa-solid fa-up-long"></i>
                     </button>
@@ -95,18 +106,6 @@
                     <button onclick="onMoveLine('right')">
                         <i class="fa-solid fa-right-long"></i>
                     </button>
-
-                    <button onclick="onMoveBetweenLines()">
-                        <img src="icons/up-down-arrows.png" alt="" />
-                    </button>
-                    <button onclick="onNewLine()">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                    <button onclick="onDeleteOjb()">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </div>
-                <div class="txt-manipulation flex align-center">
                     <button class="font-size-up" onclick="onFontUp()">
                         <img src="icons/font-up.png" alt="" />
                     </button>

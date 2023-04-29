@@ -2,6 +2,7 @@
 
 var gCurrRoute
 var gMenuOpen
+var gPrevWinWidth
 
 async function onInit() {
     loadMemesFromStorage()
@@ -15,9 +16,10 @@ async function onInit() {
     renderMemes()
     renderKeywordList()
     renderKeywordSection()
+    gPrevWinWidth = window.innerWidth
     addEventListener('resize', () => {
-        resizeCanvas()
         if (gCurrRoute === 'editor') {
+            resizeCanvas()
             renderMeme()
         }
         if (gMenuOpen && window.innerWidth > 800) {
