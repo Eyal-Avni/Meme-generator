@@ -103,13 +103,13 @@ function renderKeywordList() {
 function renderKeywordSection() {
     const keywordsMap = getKeywordsMap()
     const keywordsList = getKeywordsList()
-    var strHtmls = `<a data-trans="keyword-all" href="#" style="font-size: ${
-        keywordsList.length * 3 + 10
-    }px" onclick="onChangeFilterGallery('All')">All</a>`
+    const imgs = getImgs()
+    const maxFont = imgs.length * 1.5 + 10 > 28 ? 28 : imgs.length * 1.5 + 10
+    var strHtmls = `<a data-trans="keyword-all" href="#" style="font-size: ${maxFont}px" onclick="onChangeFilterGallery('All')">All</a>`
     strHtmls += keywordsList
         .map((keyword) => {
             return `<a data-trans="keyword-${keyword}" href="#" style="font-size: ${
-                keywordsMap[keyword] * 3 + 10
+                keywordsMap[keyword] * 1.5 + 10
             }px" onclick="onChangeFilterGallery('${keyword}')">${keyword}</a>`
         })
         .join('')

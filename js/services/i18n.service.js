@@ -61,6 +61,10 @@ var gTrans = {
         en: 'movies',
         he: 'קולנוע',
     },
+    'keyword-sport': {
+        en: 'sport',
+        he: 'ספורט',
+    },
 }
 
 var gCurrLang = 'en'
