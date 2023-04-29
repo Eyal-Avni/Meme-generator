@@ -37,6 +37,13 @@
     outline: 5px solid transparent;
     outline-offset: -5px;
     animation: outline-color 4s linear infinite;
+    z-index: 1;
+    transform: scale(1.15);
+    transition: all 0.25s ease-in-out;
+}
+
+.imgs-list .add-new-img:not(:hover) {
+    animation: shrinkImg 0.25s ease-in-out;
 }
 
 .add-new-img label {
@@ -51,12 +58,23 @@
     object-fit: cover;
     border-radius: 10px;
     position: relative;
+    /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.749) inset; */
+    filter: grayscale(65%);
 }
 
 .imgs-list img:hover {
     outline: 5px solid transparent;
     outline-offset: -5px;
     animation: outline-gradient 2s linear infinite;
+    z-index: 1;
+    transform: scale(1.15);
+    transition: all 0.25s ease-in-out;
+    box-shadow: none;
+    filter: none;
+}
+
+.imgs-list img:not(:hover) {
+    animation: shrinkImg 0.25s ease-in-out;
 }
 
 .gallery-control-bar {
