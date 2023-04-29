@@ -26,32 +26,9 @@ var gMeme = {
     id: makeId(),
     selectedImgId: '1',
     selectedLineIdx: 0,
-    lines: [
-        // {
-        //     txt: '',
-        //     size: 40,
-        //     align: 'center',
-        //     color: 'white',
-        //     posX: 200,
-        //     posY: 50,
-        // },
-        // {
-        //     txt: 'sdfsfsd',
-        //     size: 40,
-        //     align: 'center',
-        //     color: 'green',
-        //     posX: 250,
-        //     posY: 250,
-        // },
-    ],
+    lines: [],
     selectedStickerIdx: 0,
-    stickers: [
-        // {
-        //     url: 'stickers/1.svg',
-        //     posX: 200,
-        //     posY: 200,
-        // },
-    ],
+    stickers: [],
 }
 
 var gFillterKeyword = null
@@ -227,7 +204,6 @@ function prepUploadedImg(src) {
     const id = makeId()
     gImgs.unshift({ id: id, url: src, keywords: [] })
     _saveImgsToStorage()
-    // gMeme.selectedImgId = id
 }
 
 function getKeywordsList() {

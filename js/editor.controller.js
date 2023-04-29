@@ -185,19 +185,6 @@ function handleCanvasAspectRatioForSave() {
     return can
 }
 
-// function renderMemeNoFocus() {
-//     const meme = getMeme()
-//     const img = new Image()
-//     img.src = getImgURL(meme)
-//     if (!img.src) return
-//     img.onload = () => {
-//         resizeCanvas()
-//         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-//         renderLines()
-//         gCtx.save()
-//     }
-// }
-
 function updateLineInputTxt() {
     const currLine = getCurrLine()
     if (!currLine) return
@@ -242,15 +229,6 @@ function renderObjFocus() {
     }
     gCtx.stroke()
 }
-
-// function hideLineFocus() {
-//     gCtx.beginPath()
-//     gCtx.lineWidth = '0'
-//     gCtx.strokeStyle = 'yellow'
-//     gCtx.roundRect(Infinity, Infinity, 0, 0, 0)
-//     gCtx.stroke()
-//     renderMemeNoFocus()
-// }
 
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')

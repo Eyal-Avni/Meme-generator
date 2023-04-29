@@ -1,7 +1,9 @@
 .editor-container {
+    grid-column: 1 / -1;
     margin-inline: 20px;
     justify-items: center;
     justify-content: center;
+    margin-block-end: 70px;
 }
 
 .editor-container > * {
@@ -11,8 +13,6 @@
 }
 
 .canvas-container {
-    grid-column: 2;
-    overflow: hidden;
     justify-content: center;
     align-items: center;
     flex-basis: 50%;
@@ -235,7 +235,7 @@
     border: 0;
     height: 50px;
     margin-inline-end: 15px;
-    /* margin-block-end: 10px; */
+    margin-block-end: 15px;
     border-radius: 10px;
     font-size: 1.1em;
     font-weight: 700;
