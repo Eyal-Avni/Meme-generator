@@ -72,6 +72,15 @@
     }
 }
 
+@keyframes growImg {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.15);
+    }
+}
+
 .animate-charcter {
     text-transform: uppercase;
     background-image: linear-gradient(

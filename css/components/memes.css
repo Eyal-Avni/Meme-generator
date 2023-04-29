@@ -25,11 +25,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-color: transparent;
     display: none;
+    pointer-events: none;
 }
 
 .meme-container:hover .meme-modal {
+    z-index: 1;
     display: flex;
     justify-content: center;
     justify-items: center;
@@ -46,19 +49,31 @@
     font-weight: 700;
     width: 3.4375em;
     border-radius: 10px;
+    pointer-events: all;
+}
+
+.meme-container:hover .meme-modal button {
+    transform: scale(1.15);
+    transition: all 0.25s ease-in-out;
+    animation: growImg 0.25s ease-in-out;
 }
 
 .meme-modal button:first-of-type {
-    box-shadow: 1px 5px 0 #015d33, inset 0 5px 0 rgba(255, 255, 255, 0.58);
-    background-image: linear-gradient(-38deg, #42eb5c 0%, #37b34a 100%);
+    box-shadow: 1px 5px 0 #9b811b, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    background-image: linear-gradient(
+        -38deg,
+        var(--grad-color1) 0%,
+        var(--grad-color1) 1%,
+        #fee069 100%
+    );
 }
 
 .meme-modal button:nth-of-type(2) {
-    box-shadow: 1px 5px 0 #8c0606, inset 0 5px 0 rgba(255, 255, 255, 0.58);
+    box-shadow: 1px 5px 0 #902d66, inset 0 5px 0 rgba(255, 255, 255, 0.58);
     background-image: linear-gradient(
         -38deg,
-        #cf1d37 0%,
-        #cf1d37 1%,
-        #f05036 100%
+        var(--grad-color2) 0%,
+        var(--grad-color2) 1%,
+        #f76ebe 100%
     );
 }
