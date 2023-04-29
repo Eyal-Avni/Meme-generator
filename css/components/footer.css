@@ -9,6 +9,7 @@
     border-top-left-radius: -20px;
     justify-content: center;
     border-block-start: 3px solid var(--grad-color2);
+    z-index: 2;
 }
 
 .main-footer .copyrights {
