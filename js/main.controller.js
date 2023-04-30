@@ -28,6 +28,8 @@ async function onInit() {
     handleLineInputState()
     onSetLang('en')
     gMenuOpen = false
+    if (window.innerWidth > window.outerWidth) document.body.style.zoom = 0.8
+    else document.body.style.zoom = 1
 }
 
 function renderGallery() {
