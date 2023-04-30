@@ -159,6 +159,7 @@ function onDeleteMeme(id) {
 
 function onChangeFilterGallery(keyword) {
     if (getFilterKeyword() === keyword) return
+    if (keyword === '') keyword = 'All'
     setFilterKeyword(keyword)
     renderKeywordSection()
     renderFilterGalleryChanges()

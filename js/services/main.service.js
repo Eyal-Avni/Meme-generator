@@ -111,21 +111,26 @@ function setMemeId() {
     gMeme.id = makeId()
 }
 
-function setLinePos(dir) {
-    const line = getCurrLine()
-    if (!line) return
+function setObjPos(dir, type) {
+    let obj
+    if (type === 'line') {
+        obj = getCurrLine()
+    } else if (type === 'sticker') {
+        obj = getCurrSticker()
+    }
+    if (!obj) return
     switch (dir) {
         case 'up':
-            if (line.posY > 10) line.posY -= 10
+            if (obj.posY > 10) obj.posY -= 10
             break
         case 'down':
-            if (line.posY < gElCanvas.height - 10) line.posY += 10
+            if (obj.posY < gElCanvas.height - 10) obj.posY += 10
             break
         case 'left':
-            if (line.posX > 10) line.posX -= 10
+            if (obj.posX > 10) obj.posX -= 10
             break
         case 'right':
-            if (line.posX < gElCanvas.width - 10) line.posX += 10
+            if (obj.posX < gElCanvas.width - 10) obj.posX += 10
             break
         default:
             break
@@ -242,6 +247,12 @@ function moveSelectedLine() {
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1)
         gMeme.selectedLineIdx = 0
     else gMeme.selectedLineIdx++
+}
+
+function moveSelectedSticker() {
+    if (gMeme.selectedStickerIdx === gMeme.stickers.length - 1)
+        gMeme.selectedStickerIdx = 0
+    else gMeme.selectedStickerIdx++
 }
 
 function resetMeme() {

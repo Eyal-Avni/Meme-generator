@@ -18,6 +18,10 @@
         width: auto;
     }
 
+    .control-box {
+        max-height: 430px;
+    }
+
     .main-header {
         padding-inline: 40px;
     }
@@ -91,16 +95,12 @@
     }
 
     .editor-container {
-        display: grid;
-        grid-template-columns: minmax(auto, 1fr);
-        grid-template-rows: 40vh 38vh;
         gap: 10px;
     }
 
     .control-box {
-        grid-column: 2;
-        grid-row: 2;
-        overflow: scroll;
+        max-height: 430px;
+        height: 430px;
     }
 
     .canvas-container {
@@ -123,10 +123,80 @@
     .main-header .main-nav {
         right: 15vw;
     }
+    .control-box {
+        max-height: 470px;
+        height: 470px;
+    }
+}
+
+@media (max-width: 345px) {
+    .control-box {
+        max-height: 540px;
+        height: 540px;
+    }
+}
+
+@media (max-width: 300px) {
+    .gallery-keywords {
+        flex-wrap: wrap;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    .gallery-keywords a {
+        margin-inline-end: 5px;
+    }
+
+    .gallery-control-bar .gallery-btn-flexible {
+        font-size: 1em;
+    }
+
+    .gallery-search .input-gallery-search {
+        font-size: 1em;
+    }
+
+    .logo {
+        font-size: 1.375rem;
+    }
+
+    .main-header .btn-toggle-menu {
+        margin-inline: 10px 0;
+        width: 50px;
+    }
+
+    .main-header .btn-toggle-menu i {
+        font-size: 1rem;
+    }
+    .control-box {
+        max-height: 650px;
+        height: 650px;
+    }
 }
 
 @media (min-width: 800px) {
     .about-container img {
         width: 50%;
+    }
+}
+
+@media (min-width: 1400px) {
+    .about-container img {
+        width: 50%;
+    }
+
+    .canvas-container {
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 2000px) {
+    .canvas-container {
+        max-width: 40%;
+    }
+}
+
+@media (min-width: 2800px) {
+    .canvas-container {
+        max-width: 30%;
     }
 }

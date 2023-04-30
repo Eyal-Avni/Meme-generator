@@ -51,7 +51,6 @@
                         >
                     </li>
                     <li class="lang-select flex" role="group">
-                        <!-- <div > -->
                         <input
                             type="radio"
                             class="btn-check"
@@ -82,7 +81,6 @@
                             for="hebrew"
                             >Hebrew</label
                         >
-                        <!-- </div> -->
                     </li>
                 </ul>
             </nav>
@@ -131,7 +129,7 @@
                     placeholder="Please add new line"
                 />
                 <div class="txt-actions flex align-center">
-                    <button onclick="onMoveBetweenLines()">
+                    <button onclick="onMoveBetweenObjs()">
                         <img src="icons/up-down-arrows.png" alt="" />
                     </button>
                     <button onclick="onNewLine()">
@@ -142,16 +140,16 @@
                     </button>
                 </div>
                 <div class="txt-manipulation flex align-center">
-                    <button onclick="onMoveLine('up')">
+                    <button onclick="onMoveObj('up')">
                         <i class="fa-solid fa-up-long"></i>
                     </button>
-                    <button onclick="onMoveLine('down')">
+                    <button onclick="onMoveObj('down')">
                         <i class="fa-solid fa-down-long"></i>
                     </button>
-                    <button onclick="onMoveLine('left')">
+                    <button onclick="onMoveObj('left')">
                         <i class="fa-solid fa-left-long"></i>
                     </button>
-                    <button onclick="onMoveLine('right')">
+                    <button onclick="onMoveObj('right')">
                         <i class="fa-solid fa-right-long"></i>
                     </button>
                     <button class="font-size-up" onclick="onFontUp()">

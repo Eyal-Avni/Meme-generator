@@ -86,8 +86,6 @@
 .gallery-control-bar {
     margin-block-end: 10px;
     height: 60px;
-    /* justify-content: space-between; */
-    /* flex-wrap: wrap; */
 }
 
 .gallery-control-bar .gallery-search {

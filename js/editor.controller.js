@@ -51,22 +51,32 @@ function onChangeLineTxt(txt) {
 }
 
 function onFontUp() {
-    increaseFontSize()
-    renderMeme()
+    if (gSelectedType === 'line') {
+        increaseFontSize()
+        renderMeme()
+    }
 }
 
 function onFontDown() {
-    decreaseFontSize()
-    renderMeme()
+    if (gSelectedType === 'line') {
+        decreaseFontSize()
+        renderMeme()
+    }
 }
 
 function onChangeTxtColor(ev) {
-    setLineColor(ev.target.value)
-    renderMeme()
+    if (gSelectedType === 'line') {
+        setLineColor(ev.target.value)
+        renderMeme()
+    }
 }
 
-function onMoveBetweenLines() {
-    moveSelectedLine()
+function onMoveBetweenObjs() {
+    if (gSelectedType === 'sticker') {
+        moveSelectedSticker()
+    } else if (gSelectedType === 'line') {
+        moveSelectedLine()
+    }
     updateLineInputTxt()
     renderMeme()
 }
@@ -95,16 +105,20 @@ function onDeleteOjb() {
 }
 
 function onSelectFont(font) {
-    loadFont(font)
+    if (gSelectedType === 'line') {
+        loadFont(font)
+    }
 }
 
 function onAlign(dir) {
-    setLineAlign(dir)
-    renderMeme()
+    if (gSelectedType === 'line') {
+        setLineAlign(dir)
+        renderMeme()
+    }
 }
 
-function onMoveLine(dir) {
-    setLinePos(dir)
+function onMoveObj(dir) {
+    setObjPos(dir, gSelectedType)
     renderMeme()
 }
 
@@ -117,7 +131,6 @@ function onSaveMeme() {
 }
 
 function onDownloadMeme() {
-    // renderMemeNoFocus()
     const canvasUrl = gElCanvas.toDataURL()
     const elA = document.createElement('a')
     elA.setAttribute('href', canvasUrl)
