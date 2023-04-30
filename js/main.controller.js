@@ -158,6 +158,7 @@ function onDeleteMeme(id) {
 }
 
 function onChangeFilterGallery(keyword) {
+    if (getFilterKeyword() === keyword) return
     setFilterKeyword(keyword)
     renderKeywordSection()
     renderFilterGalleryChanges()
