@@ -2,7 +2,6 @@
 
 var gCurrRoute
 var gMenuOpen
-var gPrevWinWidth
 
 async function onInit() {
     loadMemesFromStorage()
@@ -16,7 +15,6 @@ async function onInit() {
     renderMemes()
     renderKeywordList()
     renderKeywordSection()
-    gPrevWinWidth = window.innerWidth
     addEventListener('resize', () => {
         if (gCurrRoute === 'editor') {
             resizeCanvas()
@@ -103,12 +101,12 @@ function renderKeywordList() {
 function renderKeywordSection() {
     const keywordsMap = getKeywordsMap()
     const keywordsList = getKeywordsList()
-    const imgs = getImgs()
+    const imgs = getUnfilteredImgs()
     const maxFont = imgs.length * 1.5 + 10 > 28 ? 28 : imgs.length * 1.5 + 10
-    var strHtmls = `<a data-trans="keyword-all" href="#" style="font-size: ${maxFont}px" onclick="onChangeFilterGallery('All')">All</a>`
+    var strHtmls = `<a class="keyword keyword-All" data-trans="keyword-all" href="#" style="font-size: ${maxFont}px" onclick="onChangeFilterGallery('All')">All</a>`
     strHtmls += keywordsList
         .map((keyword) => {
-            return `<a data-trans="keyword-${keyword}" href="#" style="font-size: ${
+            return `<a class="keyword keyword-${keyword}" data-trans="keyword-${keyword}" href="#" style="font-size: ${
                 keywordsMap[keyword] * 1.5 + 10
             }px" onclick="onChangeFilterGallery('${keyword}')">${keyword}</a>`
         })
@@ -163,7 +161,20 @@ function onDeleteMeme(id) {
 
 function onChangeFilterGallery(keyword) {
     setFilterKeyword(keyword)
+    renderFilterGalleryChanges()
     renderGallery()
+}
+
+function renderFilterGalleryChanges() {
+    const elKeywords = document.querySelectorAll('.keyword')
+    const elKeywordsArr = Array.from(elKeywords)
+    const elSelectedKeywords = document.querySelector(
+        `.keyword-${getFilterKeyword()}`
+    )
+    elKeywordsArr.forEach((elKeyword) => {
+        elKeyword.classList.remove('selected-keyword')
+    })
+    elSelectedKeywords.classList.add('selected-keyword')
 }
 
 function onUploadImg(ev) {
@@ -289,5 +300,6 @@ function onSetLang(lang) {
     }
     renderKeywordList()
     renderKeywordSection()
+    renderFilterGalleryChanges()
     doTrans()
 }

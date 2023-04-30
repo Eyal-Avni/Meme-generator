@@ -31,7 +31,7 @@ var gMeme = {
     stickers: [],
 }
 
-var gFillterKeyword = null
+var gFillterKeyword = 'All'
 
 function getMeme() {
     return gMeme
@@ -199,6 +199,10 @@ function getImgs() {
     return gImgs.filter((img) => img.keywords.includes(gFillterKeyword))
 }
 
+function getUnfilteredImgs() {
+    return gImgs
+}
+
 function prepUploadedImg(src) {
     setMemeId()
     const id = makeId()
@@ -292,6 +296,10 @@ function deleteMeme(id) {
 function setCurrMemeById(id) {
     const meme = gMemes.find((meme) => meme.memeObj.id === id)
     gMeme = meme.memeObj
+}
+
+function getFilterKeyword() {
+    return gFillterKeyword
 }
 
 function setFilterKeyword(keyword) {

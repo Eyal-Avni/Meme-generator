@@ -14,7 +14,11 @@
 
     <body class="main-layout" onload="onInit()">
         <header class="main-header flex space-between align-center full">
-            <div data-trans="logo" class="logo animate-charcter">
+            <div
+                data-trans="logo"
+                class="logo animate-charcter"
+                onclick="onRoute('gallery')"
+            >
                 Meme generator
             </div>
             <nav class="main-nav">
@@ -238,7 +242,9 @@
         </main>
 
         <footer class="main-footer full flex align-center">
-            <small class="copyrights">&copy Eyal Avni</small>
+            <small data-trans="footer-copyrights" class="copyrights"
+                >&copy Eyal Avni</small
+            >
         </footer>
 
         <script src="js/services/util.service.js"></script>

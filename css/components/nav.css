@@ -15,8 +15,13 @@
 }
 
 .logo {
+    text-transform: uppercase;
     font-size: 1.75rem;
     font-weight: 700;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 .active {
@@ -44,6 +49,7 @@
     justify-self: end;
     justify-content: end;
     justify-items: end;
+    font-size: 1rem;
 }
 
 .main-menu li:hover {

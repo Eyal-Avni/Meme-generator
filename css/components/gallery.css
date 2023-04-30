@@ -21,6 +21,8 @@
     text-align: center;
     position: relative;
     min-height: 200px;
+    cursor: pointer;
+    position: relative;
 }
 
 .add-new-img i {
@@ -49,6 +51,10 @@
 .add-new-img label {
     cursor: pointer;
     font-size: 8em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .imgs-list img {
@@ -133,6 +139,21 @@
     margin-inline-end: 10px;
     color: var(--grad-color2);
     text-decoration: none;
+}
+
+.gallery-keywords a:hover {
+    color: var(--grad-color1);
+    transform: scale(1.15);
+    transition: all 0.25s ease-in-out;
+}
+
+.selected-keyword {
+    color: var(--grad-color1) !important;
+    transform: scale(1.15) !important;
+}
+
+.gallery-keywords a:not(.selected-keyword):not(:hover) {
+    animation: shrinkImg 0.25s ease-in-out;
 }
 
 .gallery-keywords a:first-child {

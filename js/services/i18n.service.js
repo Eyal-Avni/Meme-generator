@@ -16,12 +16,12 @@ var gTrans = {
         he: 'אודות',
     },
     'nav-lang-he': {
-        en: 'HE',
+        en: '/ HE',
         he: 'עברית',
     },
     'nav-lang-en': {
         en: 'EN',
-        he: 'אנגלית',
+        he: 'אנגלית /',
     },
     'search-placeholder': {
         en: 'Search',
@@ -36,11 +36,14 @@ var gTrans = {
         en: "Didn't have enough time for about page..",
         he: 'אין מספיק זמן לדף אודות...',
     },
+    'footer-copyrights': {
+        en: `\u00A9 Eyal Avni`,
+        he: `איל אבני \u00A9`,
+    },
     'keyword-all': {
         en: 'All',
         he: 'הכל',
     },
-
     'keyword-politics': {
         en: 'politics',
         he: 'פוליטיקה',
