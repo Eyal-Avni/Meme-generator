@@ -143,17 +143,11 @@
 
 .gallery-keywords a:hover {
     color: var(--grad-color1);
-    transform: scale(1.15);
     transition: all 0.25s ease-in-out;
 }
 
 .selected-keyword {
     color: var(--grad-color1) !important;
-    transform: scale(1.15) !important;
-}
-
-.gallery-keywords a:not(.selected-keyword):not(:hover) {
-    animation: shrinkImg 0.25s ease-in-out;
 }
 
 .gallery-keywords a:first-child {

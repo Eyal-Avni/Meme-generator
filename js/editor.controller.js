@@ -75,12 +75,16 @@ function onNewLine() {
     addLine()
     handleLineInputState()
     updateLineInputTxt()
+    gSelectedType = 'line'
+    renderObjFocus()
     renderMeme()
 }
 
 function onAddSticker(elSticker) {
     const url = elSticker.getAttribute('src')
     addSticker(url)
+    gSelectedType = 'sticker'
+    renderObjFocus()
     renderMeme()
 }
 

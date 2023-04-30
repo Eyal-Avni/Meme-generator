@@ -9,7 +9,7 @@
 
 /* COMPONENTS */
 @import 'components/gallery.css';
-@import 'components/nav.css';
+@import 'components/header.css';
 @import 'components/editor.css';
 @import 'components/memes.css';
 @import 'components/footer.css';

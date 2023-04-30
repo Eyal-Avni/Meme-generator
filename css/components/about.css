@@ -1,14 +1,18 @@
 .about-container {
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     color: var(--grad-color2);
     margin-block-end: 50px;
 }
 
+.about-container h2 {
+    margin-block: 15px;
+}
+
 .about-container img {
     width: 70%;
-    height: 70%;
+
     border-radius: 20px;
 }
 

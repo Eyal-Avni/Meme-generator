@@ -6,6 +6,7 @@ var gMenuOpen
 async function onInit() {
     loadMemesFromStorage()
     loadImgsFromStorage()
+    initKeywords()
     gElCanvas = document.querySelector('.meme-canvas')
     gCtx = gElCanvas.getContext('2d')
     gCurrRoute = 'gallery'
@@ -99,16 +100,13 @@ function renderKeywordList() {
 }
 
 function renderKeywordSection() {
-    const keywordsMap = getKeywordsMap()
-    const keywordsList = getKeywordsList()
-    const imgs = getUnfilteredImgs()
-    const maxFont = imgs.length * 1.5 + 10 > 28 ? 28 : imgs.length * 1.5 + 10
-    var strHtmls = `<a class="keyword keyword-All" data-trans="keyword-all" href="#" style="font-size: ${maxFont}px" onclick="onChangeFilterGallery('All')">All</a>`
-    strHtmls += keywordsList
+    const keywordsMap = getKeywords()
+    var strHtmls = `<a class="keyword keyword-All" data-trans="keyword-all" href="#" style="font-size: 28px" onclick="onChangeFilterGallery('All')">All</a>`
+    strHtmls += keywordsMap
         .map((keyword) => {
-            return `<a class="keyword keyword-${keyword}" data-trans="keyword-${keyword}" href="#" style="font-size: ${
-                keywordsMap[keyword] * 1.5 + 10
-            }px" onclick="onChangeFilterGallery('${keyword}')">${keyword}</a>`
+            const fontSize =
+                keyword.searches * 1 + 14 > 28 ? 28 : keyword.searches * 1 + 14
+            return `<a class="keyword keyword-${keyword.content}" data-trans="keyword-${keyword.content}" href="#" style="font-size: ${fontSize}px" onclick="onChangeFilterGallery('${keyword.content}')">${keyword.content}</a>`
         })
         .join('')
     const elList = document.querySelector(
@@ -161,6 +159,7 @@ function onDeleteMeme(id) {
 
 function onChangeFilterGallery(keyword) {
     setFilterKeyword(keyword)
+    renderKeywordSection()
     renderFilterGalleryChanges()
     renderGallery()
 }
@@ -168,13 +167,14 @@ function onChangeFilterGallery(keyword) {
 function renderFilterGalleryChanges() {
     const elKeywords = document.querySelectorAll('.keyword')
     const elKeywordsArr = Array.from(elKeywords)
-    const elSelectedKeywords = document.querySelector(
-        `.keyword-${getFilterKeyword()}`
-    )
     elKeywordsArr.forEach((elKeyword) => {
         elKeyword.classList.remove('selected-keyword')
     })
-    elSelectedKeywords.classList.add('selected-keyword')
+    const elSelectedKeyword = document.querySelector(
+        `.keyword-${getFilterKeyword()}`
+    )
+    if (!elSelectedKeyword) return
+    elSelectedKeyword.classList.add('selected-keyword')
 }
 
 function onUploadImg(ev) {

@@ -124,3 +124,9 @@
         right: 15vw;
     }
 }
+
+@media (min-width: 800px) {
+    .about-container img {
+        width: 50%;
+    }
+}

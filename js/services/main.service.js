@@ -14,14 +14,10 @@ var gStickers = [
     'stickers/8.svg',
     'stickers/9.svg',
 ]
-
 var gSubStickers = [gStickers[0], gStickers[1], gStickers[2]]
 var gSubStickersHead = gSubStickers.length - 1
 var gSubStickersTail = 0
-
 var gMemes = []
-
-var gImgs
 var gMeme = {
     id: makeId(),
     selectedImgId: '1',
@@ -30,8 +26,13 @@ var gMeme = {
     selectedStickerIdx: 0,
     stickers: [],
 }
-
+var gImgs
 var gFillterKeyword = 'All'
+var gKeywords
+
+function getKeywords() {
+    return gKeywords
+}
 
 function getMeme() {
     return gMeme
@@ -210,6 +211,13 @@ function prepUploadedImg(src) {
     _saveImgsToStorage()
 }
 
+function initKeywords() {
+    const keywordsList = getKeywordsList()
+    gKeywords = keywordsList.map((keyword) => {
+        return { content: keyword, searches: 0 }
+    })
+}
+
 function getKeywordsList() {
     const uniqueKeywords = []
     gImgs.forEach((img) => {
@@ -220,20 +228,6 @@ function getKeywordsList() {
         })
     })
     return uniqueKeywords
-}
-
-function getKeywordsMap() {
-    const keywordMap = gImgs.reduce((acc, img) => {
-        img.keywords.forEach((keyword) => {
-            if (acc[keyword]) {
-                acc[keyword]++
-            } else {
-                acc[keyword] = 1
-            }
-        })
-        return acc
-    }, {})
-    return keywordMap
 }
 
 function findImgByIdx(id) {
@@ -303,6 +297,8 @@ function getFilterKeyword() {
 }
 
 function setFilterKeyword(keyword) {
+    const currKeyword = gKeywords.find((item) => item.content === keyword)
+    if (currKeyword) currKeyword.searches++
     gFillterKeyword = keyword
 }
 
