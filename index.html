@@ -93,7 +93,7 @@
                 <form class="gallery-search">
                     <input
                         data-trans="search-placeholder"
-                        onchange="onChangeFilterGallery(this.value)"
+                        oninput="onChangeFilterGallery(this.value)"
                         class="input-gallery-search"
                         list="keywords-list"
                         type="text"
@@ -123,6 +123,7 @@
             </div>
             <div class="control-box">
                 <input
+                    data-trans="add-new-line"
                     class="input-line"
                     oninput="onChangeLineTxt(this.value)"
                     type="text"

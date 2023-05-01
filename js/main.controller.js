@@ -28,8 +28,13 @@ async function onInit() {
     handleLineInputState()
     onSetLang('en')
     gMenuOpen = false
-    if (window.innerWidth > window.outerWidth) document.body.style.zoom = 0.8
-    else document.body.style.zoom = 1
+    if (window.devicePixelRatio > 1) {
+        var viewport = document.querySelector('meta[name="viewport"]')
+        viewport.setAttribute(
+            'content',
+            'width=device-width, initial-scale=' + 1 / window.devicePixelRatio
+        )
+    }
 }
 
 function renderGallery() {
@@ -161,7 +166,8 @@ function onDeleteMeme(id) {
 
 function onChangeFilterGallery(keyword) {
     if (getFilterKeyword() === keyword) return
-    if (keyword === '') keyword = 'All'
+    if (keyword === '') keyword = 'all'
+    keyword.toUpperCase()
     setFilterKeyword(keyword)
     renderKeywordSection()
     renderFilterGalleryChanges()

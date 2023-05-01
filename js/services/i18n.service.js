@@ -40,6 +40,11 @@ var gTrans = {
         en: `\u00A9 Eyal Avni`,
         he: `איל אבני \u00A9`,
     },
+    'add-new-line': {
+        en: `Please add new line`,
+        he: `הכנס שורה חדשה`,
+    },
+
     'keyword-all': {
         en: 'All',
         he: 'הכל',
@@ -56,8 +61,8 @@ var gTrans = {
         en: 'kids',
         he: 'ילדים',
     },
-    'keyword-TV': {
-        en: 'TV',
+    'keyword-tv': {
+        en: 'tv',
         he: 'טלוויזיה',
     },
     'keyword-movies': {
@@ -81,7 +86,6 @@ function getTrans(transKey) {
 }
 
 function doTrans() {
-    // debugger
     var els = document.querySelectorAll('[data-trans]')
     els.forEach((el) => {
         const transKey = el.dataset.trans

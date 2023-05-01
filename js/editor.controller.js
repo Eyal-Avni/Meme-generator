@@ -19,6 +19,7 @@ function renderMeme() {
         renderMemeStickers()
         gCtx.save()
     }
+    doTrans()
 }
 
 function renderLines() {
@@ -76,6 +77,8 @@ function onMoveBetweenObjs() {
         moveSelectedSticker()
     } else if (gSelectedType === 'line') {
         moveSelectedLine()
+        const elInput = document.querySelector('.input-line')
+        elInput.focus()
     }
     updateLineInputTxt()
     renderMeme()
@@ -88,6 +91,8 @@ function onNewLine() {
     gSelectedType = 'line'
     renderObjFocus()
     renderMeme()
+    const elInput = document.querySelector('.input-line')
+    elInput.focus()
 }
 
 function onAddSticker(elSticker) {
@@ -102,6 +107,8 @@ function onDeleteOjb() {
     deleteObj(gSelectedType)
     handleLineInputState()
     renderMeme()
+    const elInput = document.querySelector('.input-line')
+    elInput.focus()
 }
 
 function onSelectFont(font) {

@@ -40,7 +40,7 @@
     outline-offset: -5px;
     animation: outline-color 4s linear infinite;
     z-index: 1;
-    transform: scale(1.15);
+    transform: scale(var(--img-scale));
     transition: all 0.25s ease-in-out;
 }
 
@@ -73,7 +73,7 @@
     outline-offset: -5px;
     animation: outline-gradient 2s linear infinite;
     z-index: 1;
-    transform: scale(1.15);
+    transform: scale(var(--img-scale));
     transition: all 0.25s ease-in-out;
     box-shadow: none;
     filter: none;

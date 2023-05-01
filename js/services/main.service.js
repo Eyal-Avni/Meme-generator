@@ -201,8 +201,10 @@ function deleteObj(type) {
 
 function getImgs() {
     if (!gFillterKeyword) return gImgs
-    if (gFillterKeyword === 'All') return gImgs
-    return gImgs.filter((img) => img.keywords.includes(gFillterKeyword))
+    if (gFillterKeyword === 'all' || gFillterKeyword === 'All') return gImgs
+    return gImgs.filter((img) =>
+        img.keywords.includes(gFillterKeyword.toLowerCase())
+    )
 }
 
 function getUnfilteredImgs() {
@@ -308,7 +310,9 @@ function getFilterKeyword() {
 }
 
 function setFilterKeyword(keyword) {
-    const currKeyword = gKeywords.find((item) => item.content === keyword)
+    const currKeyword = gKeywords.find(
+        (item) => item.content.toUpperCase() === keyword.toUpperCase()
+    )
     if (currKeyword) currKeyword.searches++
     gFillterKeyword = keyword
 }
@@ -387,7 +391,7 @@ function moveYAxis(distance, type) {
 
 function _createLine(
     numNewLine,
-    txt = 'New line',
+    txt = '',
     size = 40,
     color = 'black',
     stroke = 'white'
@@ -437,13 +441,13 @@ function loadImgsFromStorage() {
             { id: '3', url: 'imgs/3.jpg', keywords: ['animals', 'kids'] },
             { id: '4', url: 'imgs/4.jpg', keywords: ['animals'] },
             { id: '5', url: 'imgs/5.jpg', keywords: ['kids'] },
-            { id: '6', url: 'imgs/6.jpg', keywords: ['TV'] },
+            { id: '6', url: 'imgs/6.jpg', keywords: ['tv'] },
             { id: '7', url: 'imgs/7.jpg', keywords: ['kids'] },
             { id: '8', url: 'imgs/8.jpg', keywords: ['movies'] },
             { id: '9', url: 'imgs/9.png', keywords: ['movies'] },
             { id: '10', url: 'imgs/10.jpg', keywords: ['kids'] },
-            { id: '11', url: 'imgs/11.jpg', keywords: ['TV'] },
-            { id: '12', url: 'imgs/12.jpg', keywords: ['TV'] },
+            { id: '11', url: 'imgs/11.jpg', keywords: ['tv'] },
+            { id: '12', url: 'imgs/12.jpg', keywords: ['tv'] },
             { id: '13', url: 'imgs/13.jpg', keywords: ['movies'] },
             { id: '14', url: 'imgs/14.jpg', keywords: ['kids'] },
             { id: '15', url: 'imgs/15.jpg', keywords: ['politics'] },
@@ -453,8 +457,8 @@ function loadImgsFromStorage() {
             { id: '19', url: 'imgs/19.jpg', keywords: ['movies'] },
             { id: '20', url: 'imgs/20.jpg', keywords: ['movies'] },
             { id: '21', url: 'imgs/21.jpg', keywords: ['movies'] },
-            { id: '22', url: 'imgs/22.jpg', keywords: ['TV'] },
-            { id: '23', url: 'imgs/23.jpg', keywords: ['movies', 'TV'] },
+            { id: '22', url: 'imgs/22.jpg', keywords: ['tv'] },
+            { id: '23', url: 'imgs/23.jpg', keywords: ['movies', 'tv'] },
             { id: '24', url: 'imgs/24.jpg', keywords: ['politics'] },
             { id: '25', url: 'imgs/25.jpg', keywords: ['movies'] },
             { id: '26', url: 'imgs/26.jpg', keywords: ['movies', 'kids'] },
